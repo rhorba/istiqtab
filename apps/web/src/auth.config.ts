@@ -1,3 +1,4 @@
+import type { Role } from "@istiqtab/core";
 import type { NextAuthConfig } from "next-auth";
 
 /**
@@ -23,7 +24,7 @@ export const authConfig = {
     },
     session({ session, token }) {
       if (token.sub) session.user.id = token.sub;
-      if (token.role) session.user.role = token.role as string;
+      if (token.role) session.user.role = token.role as Role;
       return session;
     },
   },

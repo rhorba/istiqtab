@@ -1,9 +1,9 @@
 import { auth } from "@/auth";
-import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import type { Role } from "@istiqtab/core";
 import { LanguageToggle } from "./language-toggle";
 import { UserMenu } from "./user-menu";
-import type { Role } from "@istiqtab/core";
 
 // ─── Role-based nav links ──────────────────────────────────────────────────
 

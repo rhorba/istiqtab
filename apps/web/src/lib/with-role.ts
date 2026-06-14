@@ -16,7 +16,7 @@ export type AuthedSession = Session & {
  */
 export function withRole<TArgs extends unknown[], TReturn>(
   allowedRoles: Role[],
-  handler: (session: AuthedSession, ...args: TArgs) => Promise<TReturn>
+  handler: (session: AuthedSession, ...args: TArgs) => Promise<TReturn>,
 ): (...args: TArgs) => Promise<TReturn> {
   return async (...args: TArgs): Promise<TReturn> => {
     const session = await auth();

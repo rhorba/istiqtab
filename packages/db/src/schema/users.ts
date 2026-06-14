@@ -1,11 +1,4 @@
-import {
-  boolean,
-  integer,
-  pgTable,
-  primaryKey,
-  text,
-  timestamp,
-} from "drizzle-orm/pg-core";
+import { boolean, integer, pgTable, primaryKey, text, timestamp } from "drizzle-orm/pg-core";
 
 // ─── Auth.js v5 Drizzle adapter tables ───────────────────────────────────────
 // Shape must match @auth/drizzle-adapter expectations exactly.
@@ -26,10 +19,7 @@ export const users = pgTable("users", {
   company: text("company"),
   country: text("country"),
   linkedinUrl: text("linkedin_url"),
-  preferredLanguage: text("preferred_language")
-    .$type<"en" | "fr" | "ar">()
-    .notNull()
-    .default("en"),
+  preferredLanguage: text("preferred_language").$type<"en" | "fr" | "ar">().notNull().default("en"),
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
 });
@@ -51,9 +41,7 @@ export const accounts = pgTable(
     id_token: text("id_token"),
     session_state: text("session_state"),
   },
-  (account) => [
-    primaryKey({ columns: [account.provider, account.providerAccountId] }),
-  ]
+  (account) => [primaryKey({ columns: [account.provider, account.providerAccountId] })],
 );
 
 export const sessions = pgTable("sessions", {
@@ -71,7 +59,7 @@ export const verificationTokens = pgTable(
     token: text("token").notNull(),
     expires: timestamp("expires", { mode: "date" }).notNull(),
   },
-  (vt) => [primaryKey({ columns: [vt.identifier, vt.token] })]
+  (vt) => [primaryKey({ columns: [vt.identifier, vt.token] })],
 );
 
 export type User = typeof users.$inferSelect;

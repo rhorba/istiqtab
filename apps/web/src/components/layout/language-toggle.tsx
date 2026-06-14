@@ -1,8 +1,8 @@
 "use client";
 
-import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import { useLocale } from "next-intl";
 
 const LOCALES = [
   { code: "en", label: "EN" },
@@ -35,7 +35,7 @@ export function LanguageToggle() {
             "rounded-md px-2.5 py-1 text-xs font-semibold tracking-wide transition-colors",
             code === locale
               ? "bg-[var(--color-navy)] text-white"
-              : "text-gray-500 hover:text-[var(--color-navy)]"
+              : "text-gray-500 hover:text-[var(--color-navy)]",
           )}
           aria-pressed={code === locale}
         >

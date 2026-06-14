@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { SignUpForm } from "@/components/auth/sign-up-form";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Create Account" };
 
@@ -15,9 +15,7 @@ export default async function SignUpPage({ params }: Props) {
       <div className="w-full max-w-lg">
         <div className="bg-white rounded-2xl border border-[var(--color-border)] shadow-sm p-8">
           <div className="mb-8 text-center">
-            <span className="text-2xl font-bold font-serif text-[var(--color-navy)]">
-              استقطاب
-            </span>
+            <span className="text-2xl font-bold font-serif text-[var(--color-navy)]">استقطاب</span>
             <p className="mt-1 text-[var(--color-gold)] text-xs font-medium tracking-wider uppercase">
               Istiqtab
             </p>

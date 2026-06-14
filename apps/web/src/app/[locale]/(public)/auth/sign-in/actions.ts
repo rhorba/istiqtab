@@ -7,7 +7,7 @@ export type SignInState = { error?: string };
 
 export async function signInWithCredentials(
   _prevState: SignInState,
-  formData: FormData
+  formData: FormData,
 ): Promise<SignInState> {
   const callbackUrl = (formData.get("callbackUrl") as string) || "/en";
 

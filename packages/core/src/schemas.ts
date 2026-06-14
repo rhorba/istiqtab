@@ -5,49 +5,111 @@ export const RoleSchema = z.enum(["investor", "consultant", "expert", "partner",
 export const LocaleSchema = z.enum(["en", "fr", "ar"]);
 
 export const InvestorOriginSchema = z.enum([
-  "france", "spain", "germany", "other_europe",
-  "uae", "saudi", "other_gulf",
-  "usa", "china", "other_asia",
-  "africa", "other",
+  "france",
+  "spain",
+  "germany",
+  "other_europe",
+  "uae",
+  "saudi",
+  "other_gulf",
+  "usa",
+  "china",
+  "other_asia",
+  "africa",
+  "other",
 ]);
 
 export const InvestmentSectorSchema = z.enum([
-  "automotive", "aerospace", "renewables", "bpo_ites", "pharma",
-  "agrifood", "tourism", "real_estate", "finance", "logistics",
-  "tech", "textile", "mining", "other",
+  "automotive",
+  "aerospace",
+  "renewables",
+  "bpo_ites",
+  "pharma",
+  "agrifood",
+  "tourism",
+  "real_estate",
+  "finance",
+  "logistics",
+  "tech",
+  "textile",
+  "mining",
+  "other",
 ]);
 
 export const ActivityTypeSchema = z.enum([
-  "manufacturing", "services", "r_and_d", "distribution", "headquarters", "mixed",
+  "manufacturing",
+  "services",
+  "r_and_d",
+  "distribution",
+  "headquarters",
+  "mixed",
 ]);
 
 export const LegalFormSchema = z.enum([
-  "sarl", "sa", "sas", "succursale", "bureau_de_liaison", "sarlau",
+  "sarl",
+  "sa",
+  "sas",
+  "succursale",
+  "bureau_de_liaison",
+  "sarlau",
 ]);
 
 export const InvestmentBracketSchema = z.enum([
-  "under_5m", "5m_to_25m", "25m_to_100m", "100m_to_500m", "over_500m",
+  "under_5m",
+  "5m_to_25m",
+  "25m_to_100m",
+  "100m_to_500m",
+  "over_500m",
 ]);
 
 export const MoroccanRegionSchema = z.enum([
-  "tanger_tetouan", "oriental", "fes_meknes", "rabat_sale", "beni_mellal",
-  "casablanca_settat", "marrakech_safi", "draa_tafilalet", "souss_massa",
-  "guelmim_oued_noun", "laayoune_sakia", "dakhla_oued_dahab",
+  "tanger_tetouan",
+  "oriental",
+  "fes_meknes",
+  "rabat_sale",
+  "beni_mellal",
+  "casablanca_settat",
+  "marrakech_safi",
+  "draa_tafilalet",
+  "souss_massa",
+  "guelmim_oued_noun",
+  "laayoune_sakia",
+  "dakhla_oued_dahab",
 ]);
 
 export const PartnerTypeSchema = z.enum([
-  "law_firm", "tax_advisor", "real_estate", "industrial_zone", "recruitment",
-  "logistics", "distributor", "supplier", "it_provider", "other",
+  "law_firm",
+  "tax_advisor",
+  "real_estate",
+  "industrial_zone",
+  "recruitment",
+  "logistics",
+  "distributor",
+  "supplier",
+  "it_provider",
+  "other",
 ]);
 
 export const IncentiveTypeSchema = z.enum([
-  "is_exemption", "is_reduced_rate", "tva_exemption", "customs_exemption",
-  "land_subsidy", "employment_premium", "training_subsidy", "energy_benefit",
-  "export_support", "sez_benefit", "r_and_d_credit",
+  "is_exemption",
+  "is_reduced_rate",
+  "tva_exemption",
+  "customs_exemption",
+  "land_subsidy",
+  "employment_premium",
+  "training_subsidy",
+  "energy_benefit",
+  "export_support",
+  "sez_benefit",
+  "r_and_d_credit",
 ]);
 
 export const WizardStepStatusSchema = z.enum([
-  "pending", "in_progress", "completed", "blocked", "skipped",
+  "pending",
+  "in_progress",
+  "completed",
+  "blocked",
+  "skipped",
 ]);
 
 // Auth schemas

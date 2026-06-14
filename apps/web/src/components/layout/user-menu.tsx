@@ -1,5 +1,6 @@
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,10 +9,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { signOutAction } from "@/lib/auth-actions";
-import { LogOut, Settings, User } from "lucide-react";
 import type { Role } from "@istiqtab/core";
+import { LogOut, Settings, User } from "lucide-react";
 
 type Props = {
   name: string | null | undefined;
@@ -62,9 +62,7 @@ export function UserMenu({ name, email, image, role, locale }: Props) {
         <DropdownMenuLabel>
           <p className="font-medium text-[var(--color-navy)] truncate">{name ?? "Account"}</p>
           <p className="text-xs text-gray-400 font-normal truncate">{email}</p>
-          <p className="text-xs text-[var(--color-gold)] font-medium mt-0.5">
-            {ROLE_LABELS[role]}
-          </p>
+          <p className="text-xs text-[var(--color-gold)] font-medium mt-0.5">{ROLE_LABELS[role]}</p>
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator />

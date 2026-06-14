@@ -3,14 +3,14 @@
 import { signIn } from "@/auth";
 import { SignUpSchema } from "@istiqtab/core";
 import { db, users } from "@istiqtab/db";
-import { eq } from "drizzle-orm";
 import * as argon2 from "argon2";
+import { eq } from "drizzle-orm";
 
 export type SignUpState = { error?: string; fieldErrors?: Record<string, string> };
 
 export async function signUpAction(
   _prevState: SignUpState,
-  formData: FormData
+  formData: FormData,
 ): Promise<SignUpState> {
   const raw = {
     name: formData.get("name"),
@@ -32,8 +32,7 @@ export async function signUpAction(
     return { fieldErrors };
   }
 
-  const { email, password, name, role, company, country, preferredLanguage } =
-    parsed.data;
+  const { email, password, name, role, company, country, preferredLanguage } = parsed.data;
 
   const existing = await db.query.users.findFirst({
     where: eq(users.email, email),

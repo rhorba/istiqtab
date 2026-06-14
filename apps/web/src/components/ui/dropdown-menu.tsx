@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
+import { cn } from "@/lib/utils";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { Check, ChevronRight, Circle } from "lucide-react";
-import { cn } from "@/lib/utils";
+import * as React from "react";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
@@ -26,7 +26,7 @@ const DropdownMenuContent = React.forwardRef<
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
         "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
-        className
+        className,
       )}
       {...props}
     />
@@ -47,7 +47,7 @@ const DropdownMenuItem = React.forwardRef<
       "focus:bg-[var(--color-surface-muted)]",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   />
@@ -65,7 +65,7 @@ const DropdownMenuLabel = React.forwardRef<
     className={cn(
       "px-2 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wider",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   />
@@ -95,7 +95,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
     className={cn(
       "flex cursor-default select-none items-center gap-2 rounded-md px-2 py-1.5 text-sm text-[var(--color-navy)] outline-none focus:bg-[var(--color-surface-muted)]",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   >
@@ -114,7 +114,7 @@ const DropdownMenuSubContent = React.forwardRef<
     className={cn(
       "z-50 min-w-[8rem] overflow-hidden rounded-lg border border-[var(--color-border)] bg-white p-1 shadow-md",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
-      className
+      className,
     )}
     {...props}
   />
@@ -129,7 +129,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center rounded-md py-1.5 pl-8 pr-2 text-sm text-[var(--color-navy)] outline-none transition-colors focus:bg-[var(--color-surface-muted)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
+      className,
     )}
     checked={checked}
     {...props}
@@ -152,7 +152,7 @@ const DropdownMenuRadioItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center rounded-md py-1.5 pl-8 pr-2 text-sm text-[var(--color-navy)] outline-none transition-colors focus:bg-[var(--color-surface-muted)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
+      className,
     )}
     {...props}
   >

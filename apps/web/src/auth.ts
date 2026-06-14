@@ -1,18 +1,12 @@
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import {
-  accounts,
-  db,
-  sessions,
-  users,
-  verificationTokens,
-} from "@istiqtab/db";
 import { SignInSchema } from "@istiqtab/core";
+import { accounts, db, sessions, users, verificationTokens } from "@istiqtab/db";
+import * as argon2 from "argon2";
 import { eq } from "drizzle-orm";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import LinkedIn from "next-auth/providers/linkedin";
-import * as argon2 from "argon2";
 import { authConfig } from "./auth.config";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
@@ -71,10 +65,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 
         if (!user?.passwordHash) return null;
 
-        const valid = await argon2.verify(
-          user.passwordHash,
-          parsed.data.password
-        );
+        const valid = await argon2.verify(user.passwordHash, parsed.data.password);
         if (!valid) return null;
 
         return {

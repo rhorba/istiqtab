@@ -65,10 +65,7 @@ const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "expert_profile:edit_own",
     "expert_slots:manage",
   ],
-  partner: [
-    "partners:browse",
-    "partner_profile:edit_own",
-  ],
+  partner: ["partners:browse", "partner_profile:edit_own"],
   admin: [
     "ai_advisor:use_anonymous",
     "ai_advisor:use_full",

@@ -8,9 +8,7 @@ import { routing } from "./i18n/routing";
 const { auth } = NextAuth(authConfig);
 const intlMiddleware = createMiddleware(routing);
 
-const PROTECTED_PATTERNS = [
-  /^\/[a-z]{2}\/(investor|consultant|expert|partner|admin)(\/.*)?$/,
-];
+const PROTECTED_PATTERNS = [/^\/[a-z]{2}\/(investor|consultant|expert|partner|admin)(\/.*)?$/];
 
 const ADMIN_ONLY = [/^\/[a-z]{2}\/admin(\/.*)?$/];
 
@@ -40,7 +38,5 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)",
-  ],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)"],
 };

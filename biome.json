@@ -27,6 +27,9 @@
         "noNonNullAssertion": "warn",
         "useConst": "error"
       },
+      "a11y": {
+        "useSemanticElements": "warn"
+      },
       "suspicious": {
         "noExplicitAny": "warn"
       },

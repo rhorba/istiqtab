@@ -1,7 +1,7 @@
 "use client";
 
+import { type SignUpState, signUpAction } from "@/app/[locale]/(public)/auth/sign-up/actions";
 import { useActionState } from "react";
-import { signUpAction } from "@/app/[locale]/(public)/auth/sign-up/actions";
 
 type Props = { locale: string };
 
@@ -12,7 +12,7 @@ const ROLES = [
   { value: "partner", label: "Local partner / supplier" },
 ] as const;
 
-const initialState = {};
+const initialState: SignUpState = {};
 
 export function SignUpForm({ locale }: Props) {
   const [state, action, isPending] = useActionState(signUpAction, initialState);
@@ -20,9 +20,7 @@ export function SignUpForm({ locale }: Props) {
   return (
     <form action={action} className="space-y-4">
       {state.error && (
-        <div className="rounded-md bg-red-50 px-4 py-3 text-sm text-red-700">
-          {state.error}
-        </div>
+        <div className="rounded-md bg-red-50 px-4 py-3 text-sm text-red-700">{state.error}</div>
       )}
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -44,7 +42,10 @@ export function SignUpForm({ locale }: Props) {
         </div>
 
         <div>
-          <label htmlFor="company" className="block text-sm font-medium text-[var(--color-navy)] mb-1">
+          <label
+            htmlFor="company"
+            className="block text-sm font-medium text-[var(--color-navy)] mb-1"
+          >
             Company name
           </label>
           <input
@@ -75,7 +76,10 @@ export function SignUpForm({ locale }: Props) {
       </div>
 
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-[var(--color-navy)] mb-1">
+        <label
+          htmlFor="password"
+          className="block text-sm font-medium text-[var(--color-navy)] mb-1"
+        >
           Password <span className="text-red-500">*</span>
         </label>
         <input
@@ -104,9 +108,13 @@ export function SignUpForm({ locale }: Props) {
           defaultValue=""
           className="w-full rounded-lg border border-[var(--color-border)] px-3 py-2 text-sm outline-none focus:border-[var(--color-gold)] focus:ring-1 focus:ring-[var(--color-gold)] bg-white"
         >
-          <option value="" disabled>Select your role</option>
+          <option value="" disabled>
+            Select your role
+          </option>
           {ROLES.map((r) => (
-            <option key={r.value} value={r.value}>{r.label}</option>
+            <option key={r.value} value={r.value}>
+              {r.label}
+            </option>
           ))}
         </select>
         {state.fieldErrors?.role && (
@@ -115,7 +123,10 @@ export function SignUpForm({ locale }: Props) {
       </div>
 
       <div>
-        <label htmlFor="country" className="block text-sm font-medium text-[var(--color-navy)] mb-1">
+        <label
+          htmlFor="country"
+          className="block text-sm font-medium text-[var(--color-navy)] mb-1"
+        >
           Country
         </label>
         <input
@@ -140,7 +151,10 @@ export function SignUpForm({ locale }: Props) {
 
       <p className="text-center text-sm text-gray-500">
         Already have an account?{" "}
-        <a href={`/${locale}/auth/sign-in`} className="text-[var(--color-gold)] font-medium hover:underline">
+        <a
+          href={`/${locale}/auth/sign-in`}
+          className="text-[var(--color-gold)] font-medium hover:underline"
+        >
           Sign in
         </a>
       </p>
