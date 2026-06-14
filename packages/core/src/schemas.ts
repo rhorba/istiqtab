@@ -142,6 +142,37 @@ export const InvestorProfileCreateSchema = z.object({
 
 export const InvestorProfileUpdateSchema = InvestorProfileCreateSchema.partial();
 
+// Partner profile schema
+export const PartnerProfileCreateSchema = z.object({
+  companyName: z.string().min(2).max(200),
+  ice: z.string().max(20).optional(),
+  partnerType: PartnerTypeSchema,
+  sectors: z.array(InvestmentSectorSchema).max(14).default([]),
+  regions: z.array(MoroccanRegionSchema).max(12).default([]),
+  languages: z.array(LocaleSchema).min(1).max(3),
+  description: z.string().min(20).max(2000),
+  internationalClients: z.array(z.string().max(120)).max(20).optional(),
+  websiteUrl: z.string().url().max(300).optional(),
+});
+
+export const PartnerProfileUpdateSchema = PartnerProfileCreateSchema.partial();
+
+// Expert profile schema
+export const ExpertProfileCreateSchema = z.object({
+  name: z.string().min(2).max(120),
+  title: z.string().min(2).max(160),
+  specializations: z.array(InvestmentSectorSchema).max(14).default([]),
+  languages: z.array(LocaleSchema).min(1).max(3),
+  hourlyRateMAD: z.number().int().min(0).max(1000000),
+  hourlyRateEUR: z.number().int().min(0).max(100000).optional(),
+  bio: z.string().min(20).max(3000),
+  bioFr: z.string().max(3000).optional(),
+  bioAr: z.string().max(3000).optional(),
+  linkedinUrl: z.string().url().max(300).optional(),
+});
+
+export const ExpertProfileUpdateSchema = ExpertProfileCreateSchema.partial();
+
 // Incentives calculator input
 export const IncentivesInputSchema = z.object({
   sector: InvestmentSectorSchema,
@@ -187,6 +218,8 @@ export type SignUpInput = z.infer<typeof SignUpSchema>;
 export type SignInInput = z.infer<typeof SignInSchema>;
 export type InvestorProfileCreateInput = z.infer<typeof InvestorProfileCreateSchema>;
 export type InvestorProfileUpdateInput = z.infer<typeof InvestorProfileUpdateSchema>;
+export type PartnerProfileCreateInput = z.infer<typeof PartnerProfileCreateSchema>;
+export type ExpertProfileCreateInput = z.infer<typeof ExpertProfileCreateSchema>;
 export type IncentivesInput = z.infer<typeof IncentivesInputSchema>;
 export type PartnerSearchInput = z.infer<typeof PartnerSearchSchema>;
 export type IntroductionRequestInput = z.infer<typeof IntroductionRequestSchema>;

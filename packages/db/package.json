@@ -8,6 +8,7 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:seed": "tsx src/seed/index.ts",
@@ -15,6 +16,7 @@
   },
   "dependencies": {
     "@istiqtab/core": "workspace:*",
+    "argon2": "^0.43.0",
     "drizzle-orm": "^0.40.1",
     "postgres": "^3.4.5"
   },
@@ -22,6 +24,7 @@
     "@types/node": "^22.15.21",
     "drizzle-kit": "^0.30.6",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.3"
   }
 }

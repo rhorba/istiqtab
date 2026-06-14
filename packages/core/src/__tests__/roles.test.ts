@@ -57,6 +57,18 @@ describe("RBAC permission matrix (CLAUDE.md §7)", () => {
     expect(hasPermission("consultant", "documents:upload")).toBe(false);
   });
 
+  it("profile-edit isolation: only the owning role can edit its profile", () => {
+    // Partner can edit partner profile, never an expert profile (and vice versa).
+    expect(hasPermission("partner", "partner_profile:edit_own")).toBe(true);
+    expect(hasPermission("partner", "expert_profile:edit_own")).toBe(false);
+    expect(hasPermission("expert", "expert_profile:edit_own")).toBe(true);
+    expect(hasPermission("expert", "partner_profile:edit_own")).toBe(false);
+    // Investors/consultants edit neither.
+    expect(hasPermission("investor", "expert_profile:edit_own")).toBe(false);
+    expect(hasPermission("investor", "partner_profile:edit_own")).toBe(false);
+    expect(hasPermission("consultant", "expert_profile:edit_own")).toBe(false);
+  });
+
   it("hasAnyPermission / hasAllPermissions compose correctly", () => {
     expect(hasAnyPermission("partner", ["partners:browse", "admin:view_kpis"])).toBe(true);
     expect(hasAllPermissions("partner", ["partners:browse", "admin:view_kpis"])).toBe(false);
