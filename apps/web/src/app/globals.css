@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  /* Navy/gold palette — Istiqtab design identity */
+  --color-navy-950: #0d1626;
+  --color-navy-900: #1a2744;
+  --color-navy-800: #243459;
+  --color-navy-700: #2e426e;
+  --color-navy-600: #3d5a8a;
+  --color-navy-500: #4f73a8;
+
+  --color-gold-600: #a07828;
+  --color-gold-500: #c9a84c;
+  --color-gold-400: #d9bc72;
+  --color-gold-300: #e8d09a;
+  --color-gold-100: #faf4e6;
+
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8f9fb;
+  --color-surface-subtle: #f1f3f7;
+
+  /* Semantic shorthands used across components */
+  --color-navy: #1a2744;
+  --color-navy-light: #243459;
+  --color-gold: #c9a84c;
+  --color-gold-hover: #a07828;
+  --color-border: #e2e6ef;
+
+  /* Typography */
+  --font-heading: "Libre Baskerville", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-arabic: "Noto Kufi Arabic", "Arial Unicode MS", sans-serif;
+
+  /* Border radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html[dir="rtl"] {
+    font-family: var(--font-arabic);
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-surface);
+    color: var(--color-navy-900);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-navy-900);
+  }
+
+  html[dir="rtl"] h1,
+  html[dir="rtl"] h2,
+  html[dir="rtl"] h3,
+  html[dir="rtl"] h4,
+  html[dir="rtl"] h5,
+  html[dir="rtl"] h6 {
+    font-family: var(--font-arabic);
+  }
+}

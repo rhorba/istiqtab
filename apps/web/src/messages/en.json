@@ -1,0 +1,170 @@
+{
+  "Metadata": {
+    "title": "Istiqtab — Set up in Morocco. Fast, clear, confident.",
+    "description": "Morocco's first AI-powered FDI facilitation platform. Navigate company setup, calculate incentives, and find verified local partners."
+  },
+  "Nav": {
+    "calculator": "Incentives Calculator",
+    "wizard": "Setup Wizard",
+    "partners": "Find Partners",
+    "experts": "Book an Expert",
+    "hub": "Investment Hub",
+    "aiAdvisor": "Ask Istiqtab",
+    "signIn": "Sign In",
+    "signUp": "Get Started",
+    "dashboard": "Dashboard",
+    "signOut": "Sign Out",
+    "profile": "My Profile"
+  },
+  "Auth": {
+    "signIn": "Sign In",
+    "signUp": "Create Account",
+    "email": "Email address",
+    "password": "Password",
+    "name": "Full name",
+    "company": "Company name",
+    "country": "Country",
+    "role": "I am a...",
+    "roles": {
+      "investor": "Foreign investor",
+      "consultant": "Investment consultant",
+      "expert": "Morocco advisor / expert",
+      "partner": "Local partner / supplier"
+    },
+    "continueWithGoogle": "Continue with Google",
+    "continueWithLinkedIn": "Continue with LinkedIn",
+    "orEmail": "Or continue with email",
+    "alreadyHaveAccount": "Already have an account?",
+    "noAccount": "Don't have an account?",
+    "forgotPassword": "Forgot password?",
+    "verifyEmail": "Please verify your email address",
+    "verifyEmailSent": "A verification link has been sent to {email}",
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required",
+    "passwordMin": "Password must be at least 8 characters",
+    "nameRequired": "Name is required",
+    "roleRequired": "Please select your role"
+  },
+  "Landing": {
+    "hero": {
+      "headline": "Set up in Morocco.",
+      "headlineSub": "Fast, clear, confident.",
+      "body": "Morocco attracted MAD 43.2 billion in FDI in 2024 — up 24.7%. Navigate company formation, investment incentives, and local partnerships with Morocco's first AI-powered investment platform.",
+      "ctaCalculator": "Calculate Your Incentives",
+      "ctaWizard": "Start Setup Wizard",
+      "stats": {
+        "fdi": "MAD 43.2B FDI in 2024",
+        "growth": "+24.7% year-on-year",
+        "target": "550B MAD by 2026",
+        "sectors": "18 key sectors"
+      }
+    },
+    "sectors": {
+      "title": "Your sector. Your incentives.",
+      "subtitle": "Morocco's Investment Charter 2022 offers up to 5 years of corporate tax exemption, customs duty waivers, and land subsidies across 14 sectors."
+    }
+  },
+  "Calculator": {
+    "title": "Investment Incentives Calculator",
+    "subtitle": "Enter your project details to calculate applicable incentives from Morocco's Investment Charter 2022.",
+    "disclaimer": "Results are indicative only, based on publicly available Charter data. For binding confirmation, consult your CRI or a qualified advisor.",
+    "steps": {
+      "sector": "Your Sector",
+      "activity": "Activity Type",
+      "investment": "Investment Size",
+      "region": "Target Region",
+      "jobs": "Jobs to Create"
+    },
+    "results": {
+      "title": "Your Applicable Incentives",
+      "totalBenefit": "Estimated Total Benefit",
+      "exportPdf": "Export PDF Report",
+      "compareRegions": "Compare 3 Regions",
+      "saveAndTrack": "Save & Track in Wizard"
+    }
+  },
+  "Sectors": {
+    "automotive": "Automotive & Equipment",
+    "aerospace": "Aerospace",
+    "renewables": "Renewable Energy",
+    "bpo_ites": "BPO / Offshoring / IT",
+    "pharma": "Pharmaceuticals",
+    "agrifood": "Agri-food",
+    "tourism": "Tourism & Hospitality",
+    "real_estate": "Real Estate",
+    "finance": "Financial Services",
+    "logistics": "Logistics & Transport",
+    "tech": "Technology & Digital",
+    "textile": "Textile & Apparel",
+    "mining": "Mining & Extraction",
+    "other": "Other"
+  },
+  "Regions": {
+    "tanger_tetouan": "Tanger-Tétouan-Al Hoceïma",
+    "oriental": "Oriental",
+    "fes_meknes": "Fès-Meknès",
+    "rabat_sale": "Rabat-Salé-Kénitra",
+    "beni_mellal": "Béni Mellal-Khénifra",
+    "casablanca_settat": "Casablanca-Settat",
+    "marrakech_safi": "Marrakech-Safi",
+    "draa_tafilalet": "Drâa-Tafilalet",
+    "souss_massa": "Souss-Massa",
+    "guelmim_oued_noun": "Guelmim-Oued Noun",
+    "laayoune_sakia": "Laâyoune-Sakia El Hamra",
+    "dakhla_oued_dahab": "Dakhla-Oued Ed-Dahab"
+  },
+  "IncentiveTypes": {
+    "is_exemption": "Corporate Tax Exemption (IS)",
+    "is_reduced_rate": "Reduced Corporate Tax Rate",
+    "tva_exemption": "VAT Exemption",
+    "customs_exemption": "Customs Duty Exemption",
+    "land_subsidy": "Land Subsidy",
+    "employment_premium": "Employment Premium",
+    "training_subsidy": "Training Subsidy (OFPPT)",
+    "energy_benefit": "Energy Benefit",
+    "export_support": "Export Support (AMDIE)",
+    "sez_benefit": "Special Economic Zone Benefit",
+    "r_and_d_credit": "R&D Tax Credit"
+  },
+  "LegalForms": {
+    "sarl": "SARL — Limited Liability Company",
+    "sa": "SA — Public Limited Company",
+    "sas": "SAS — Simplified Joint Stock Company",
+    "succursale": "Succursale — Branch Office",
+    "bureau_de_liaison": "Bureau de Liaison — Representative Office",
+    "sarlau": "SARL-AU — Single-Member LLC"
+  },
+  "ActivityTypes": {
+    "manufacturing": "Manufacturing",
+    "services": "Services",
+    "r_and_d": "R&D",
+    "distribution": "Distribution",
+    "headquarters": "Regional Headquarters",
+    "mixed": "Mixed Activities"
+  },
+  "InvestmentBrackets": {
+    "under_5m": "Under 5M MAD",
+    "5m_to_25m": "5M – 25M MAD",
+    "25m_to_100m": "25M – 100M MAD",
+    "100m_to_500m": "100M – 500M MAD",
+    "over_500m": "Over 500M MAD"
+  },
+  "PartnerTypes": {
+    "law_firm": "Law Firm / Legal Advisor",
+    "tax_advisor": "Tax & Accounting Firm",
+    "real_estate": "Industrial Real Estate",
+    "industrial_zone": "Industrial Zone Manager",
+    "recruitment": "Recruitment Agency",
+    "logistics": "Logistics Provider",
+    "distributor": "Local Distributor",
+    "supplier": "Industrial Supplier",
+    "it_provider": "IT Service Provider",
+    "other": "Other"
+  },
+  "Errors": {
+    "generic": "Something went wrong. Please try again.",
+    "unauthorized": "You are not authorized to perform this action.",
+    "notFound": "The requested resource was not found.",
+    "validation": "Please check your input and try again."
+  }
+}

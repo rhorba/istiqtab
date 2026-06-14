@@ -1,0 +1,25 @@
+{
+  "name": "istiqtab",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "test": "pnpm -r test",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "typecheck": "pnpm -r typecheck",
+    "db:generate": "pnpm --filter @istiqtab/db db:generate",
+    "db:migrate": "pnpm --filter @istiqtab/db db:migrate",
+    "db:seed": "pnpm --filter @istiqtab/db db:seed",
+    "db:studio": "pnpm --filter @istiqtab/db db:studio"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}

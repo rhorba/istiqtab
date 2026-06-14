@@ -1,0 +1,23 @@
+{
+  "name": "@istiqtab/incentives",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@istiqtab/core": "workspace:*",
+    "@istiqtab/db": "workspace:*",
+    "@react-pdf/renderer": "^4.3.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.3"
+  }
+}

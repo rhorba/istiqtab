@@ -1,0 +1,78 @@
+import {
+  boolean,
+  integer,
+  pgTable,
+  primaryKey,
+  text,
+  timestamp,
+} from "drizzle-orm/pg-core";
+
+// ─── Auth.js v5 Drizzle adapter tables ───────────────────────────────────────
+// Shape must match @auth/drizzle-adapter expectations exactly.
+
+export const users = pgTable("users", {
+  id: text("id").notNull().primaryKey(),
+  name: text("name"),
+  email: text("email").notNull().unique(),
+  emailVerified: timestamp("email_verified", { mode: "date" }),
+  image: text("image"),
+
+  // ── Istiqtab extensions ──────────────────────────────────────────────────
+  role: text("role")
+    .$type<"investor" | "consultant" | "expert" | "partner" | "admin">()
+    .notNull()
+    .default("investor"),
+  passwordHash: text("password_hash"),
+  company: text("company"),
+  country: text("country"),
+  linkedinUrl: text("linkedin_url"),
+  preferredLanguage: text("preferred_language")
+    .$type<"en" | "fr" | "ar">()
+    .notNull()
+    .default("en"),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
+});
+
+export const accounts = pgTable(
+  "accounts",
+  {
+    userId: text("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    type: text("type").notNull(),
+    provider: text("provider").notNull(),
+    providerAccountId: text("provider_account_id").notNull(),
+    refresh_token: text("refresh_token"),
+    access_token: text("access_token"),
+    expires_at: integer("expires_at"),
+    token_type: text("token_type"),
+    scope: text("scope"),
+    id_token: text("id_token"),
+    session_state: text("session_state"),
+  },
+  (account) => [
+    primaryKey({ columns: [account.provider, account.providerAccountId] }),
+  ]
+);
+
+export const sessions = pgTable("sessions", {
+  sessionToken: text("session_token").notNull().primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  expires: timestamp("expires", { mode: "date" }).notNull(),
+});
+
+export const verificationTokens = pgTable(
+  "verification_tokens",
+  {
+    identifier: text("identifier").notNull(),
+    token: text("token").notNull(),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
+  },
+  (vt) => [primaryKey({ columns: [vt.identifier, vt.token] })]
+);
+
+export type User = typeof users.$inferSelect;
+export type NewUser = typeof users.$inferInsert;

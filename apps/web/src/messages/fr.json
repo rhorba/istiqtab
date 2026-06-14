@@ -1,0 +1,170 @@
+{
+  "Metadata": {
+    "title": "Istiqtab — Investissez au Maroc. Vite, clairement, en confiance.",
+    "description": "La première plateforme marocaine d'aide à l'investissement étranger alimentée par l'IA. Naviguez la création d'entreprise, calculez vos incitations et trouvez des partenaires locaux vérifiés."
+  },
+  "Nav": {
+    "calculator": "Calculateur d'incitations",
+    "wizard": "Assistant de création",
+    "partners": "Trouver des partenaires",
+    "experts": "Réserver un expert",
+    "hub": "Hub investissement",
+    "aiAdvisor": "Demandez à Istiqtab",
+    "signIn": "Connexion",
+    "signUp": "Commencer",
+    "dashboard": "Tableau de bord",
+    "signOut": "Déconnexion",
+    "profile": "Mon profil"
+  },
+  "Auth": {
+    "signIn": "Se connecter",
+    "signUp": "Créer un compte",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "name": "Nom complet",
+    "company": "Nom de l'entreprise",
+    "country": "Pays",
+    "role": "Je suis...",
+    "roles": {
+      "investor": "Investisseur étranger",
+      "consultant": "Consultant en investissement",
+      "expert": "Conseiller / expert Maroc",
+      "partner": "Partenaire local / fournisseur"
+    },
+    "continueWithGoogle": "Continuer avec Google",
+    "continueWithLinkedIn": "Continuer avec LinkedIn",
+    "orEmail": "Ou continuer avec e-mail",
+    "alreadyHaveAccount": "Vous avez déjà un compte ?",
+    "noAccount": "Pas de compte ?",
+    "forgotPassword": "Mot de passe oublié ?",
+    "verifyEmail": "Veuillez vérifier votre adresse e-mail",
+    "verifyEmailSent": "Un lien de vérification a été envoyé à {email}",
+    "emailRequired": "L'e-mail est requis",
+    "passwordRequired": "Le mot de passe est requis",
+    "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
+    "nameRequired": "Le nom est requis",
+    "roleRequired": "Veuillez sélectionner votre rôle"
+  },
+  "Landing": {
+    "hero": {
+      "headline": "Investissez au Maroc.",
+      "headlineSub": "Vite, clairement, en confiance.",
+      "body": "Le Maroc a attiré 43,2 milliards MAD d'IDE en 2024 — en hausse de 24,7 %. Naviguez la création d'entreprise, les incitations à l'investissement et les partenariats locaux avec la première plateforme d'investissement IA du Maroc.",
+      "ctaCalculator": "Calculer vos incitations",
+      "ctaWizard": "Démarrer l'assistant",
+      "stats": {
+        "fdi": "43,2 Mds MAD IDE en 2024",
+        "growth": "+24,7 % par an",
+        "target": "550 Mds MAD d'ici 2026",
+        "sectors": "18 secteurs clés"
+      }
+    },
+    "sectors": {
+      "title": "Votre secteur. Vos incitations.",
+      "subtitle": "La Charte d'investissement 2022 du Maroc offre jusqu'à 5 ans d'exonération d'IS, des exonérations de droits de douane et des subventions foncières dans 14 secteurs."
+    }
+  },
+  "Calculator": {
+    "title": "Calculateur d'incitations à l'investissement",
+    "subtitle": "Entrez les détails de votre projet pour calculer les incitations applicables de la Charte d'investissement 2022 du Maroc.",
+    "disclaimer": "Les résultats sont indicatifs uniquement, basés sur les données publiées de la Charte. Pour une confirmation contraignante, consultez votre CRI ou un conseiller qualifié.",
+    "steps": {
+      "sector": "Votre secteur",
+      "activity": "Type d'activité",
+      "investment": "Montant de l'investissement",
+      "region": "Région cible",
+      "jobs": "Emplois à créer"
+    },
+    "results": {
+      "title": "Vos incitations applicables",
+      "totalBenefit": "Avantage total estimé",
+      "exportPdf": "Exporter le rapport PDF",
+      "compareRegions": "Comparer 3 régions",
+      "saveAndTrack": "Sauvegarder et suivre"
+    }
+  },
+  "Sectors": {
+    "automotive": "Automobile & Équipements",
+    "aerospace": "Aéronautique",
+    "renewables": "Énergies renouvelables",
+    "bpo_ites": "BPO / Offshoring / IT",
+    "pharma": "Industrie pharmaceutique",
+    "agrifood": "Agroalimentaire",
+    "tourism": "Tourisme & Hôtellerie",
+    "real_estate": "Immobilier",
+    "finance": "Services financiers",
+    "logistics": "Logistique & Transport",
+    "tech": "Tech & Digital",
+    "textile": "Textile & Habillement",
+    "mining": "Mines & Extraction",
+    "other": "Autre"
+  },
+  "Regions": {
+    "tanger_tetouan": "Tanger-Tétouan-Al Hoceïma",
+    "oriental": "Oriental",
+    "fes_meknes": "Fès-Meknès",
+    "rabat_sale": "Rabat-Salé-Kénitra",
+    "beni_mellal": "Béni Mellal-Khénifra",
+    "casablanca_settat": "Casablanca-Settat",
+    "marrakech_safi": "Marrakech-Safi",
+    "draa_tafilalet": "Drâa-Tafilalet",
+    "souss_massa": "Souss-Massa",
+    "guelmim_oued_noun": "Guelmim-Oued Noun",
+    "laayoune_sakia": "Laâyoune-Sakia El Hamra",
+    "dakhla_oued_dahab": "Dakhla-Oued Ed-Dahab"
+  },
+  "IncentiveTypes": {
+    "is_exemption": "Exonération IS",
+    "is_reduced_rate": "Taux IS réduit",
+    "tva_exemption": "Exonération TVA",
+    "customs_exemption": "Exonération droits de douane",
+    "land_subsidy": "Prime foncière",
+    "employment_premium": "Prime à l'emploi",
+    "training_subsidy": "Subvention formation (OFPPT)",
+    "energy_benefit": "Avantage énergie",
+    "export_support": "Soutien export (AMDIE)",
+    "sez_benefit": "Avantage zone économique spéciale",
+    "r_and_d_credit": "Crédit impôt R&D"
+  },
+  "LegalForms": {
+    "sarl": "SARL — Société à responsabilité limitée",
+    "sa": "SA — Société anonyme",
+    "sas": "SAS — Société par actions simplifiée",
+    "succursale": "Succursale",
+    "bureau_de_liaison": "Bureau de liaison",
+    "sarlau": "SARL-AU — Associé unique"
+  },
+  "ActivityTypes": {
+    "manufacturing": "Production industrielle",
+    "services": "Services",
+    "r_and_d": "R&D",
+    "distribution": "Distribution",
+    "headquarters": "Siège régional",
+    "mixed": "Activités mixtes"
+  },
+  "InvestmentBrackets": {
+    "under_5m": "Moins de 5M MAD",
+    "5m_to_25m": "5M – 25M MAD",
+    "25m_to_100m": "25M – 100M MAD",
+    "100m_to_500m": "100M – 500M MAD",
+    "over_500m": "Plus de 500M MAD"
+  },
+  "PartnerTypes": {
+    "law_firm": "Cabinet d'avocats / conseil juridique",
+    "tax_advisor": "Cabinet fiscal / comptable",
+    "real_estate": "Immobilier industriel",
+    "industrial_zone": "Gestionnaire de zone industrielle",
+    "recruitment": "Cabinet de recrutement",
+    "logistics": "Opérateur logistique",
+    "distributor": "Distributeur local",
+    "supplier": "Fournisseur industriel",
+    "it_provider": "Prestataire IT",
+    "other": "Autre"
+  },
+  "Errors": {
+    "generic": "Une erreur est survenue. Veuillez réessayer.",
+    "unauthorized": "Vous n'êtes pas autorisé à effectuer cette action.",
+    "notFound": "La ressource demandée est introuvable.",
+    "validation": "Veuillez vérifier vos informations et réessayer."
+  }
+}
