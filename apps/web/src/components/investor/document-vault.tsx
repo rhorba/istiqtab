@@ -87,7 +87,9 @@ export function DocumentVault({ documents }: Props) {
             </select>
           </label>
           <label className="flex flex-col gap-1.5 text-sm">
-            <span className="font-medium text-[var(--color-navy)]">File (PDF, JPEG, PNG · ≤10 MB)</span>
+            <span className="font-medium text-[var(--color-navy)]">
+              File (PDF, JPEG, PNG · ≤10 MB)
+            </span>
             <input
               type="file"
               name="file"
@@ -126,9 +128,7 @@ export function DocumentVault({ documents }: Props) {
                   <span className="text-sm font-medium text-[var(--color-navy)]">
                     {TYPE_LABEL[doc.type] ?? doc.type}
                   </span>
-                  <Badge variant="default">
-                    {new Date(doc.uploadedAt).toLocaleDateString()}
-                  </Badge>
+                  <Badge variant="default">{new Date(doc.uploadedAt).toLocaleDateString()}</Badge>
                 </div>
               </div>
               <button

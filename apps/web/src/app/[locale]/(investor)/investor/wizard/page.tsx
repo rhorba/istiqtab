@@ -54,9 +54,7 @@ export default async function WizardPage({ params }: Props) {
 
         {steps.length === 0 ? (
           <div className="rounded-2xl border border-[var(--color-border)] bg-white p-8 text-center">
-            <p className="text-sm text-gray-500">
-              Your checklist hasn&apos;t been generated yet.
-            </p>
+            <p className="text-sm text-gray-500">Your checklist hasn&apos;t been generated yet.</p>
             <Link
               href={`/${locale}/investor/onboarding`}
               className="mt-4 inline-block rounded-lg bg-[var(--color-navy)] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[var(--color-navy-light)] transition-colors"

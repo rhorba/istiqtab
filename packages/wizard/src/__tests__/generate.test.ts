@@ -244,9 +244,9 @@ describe("generateWizardSteps — branching rules", () => {
 
   it("large brackets trigger the State investment agreement; small ones do not", () => {
     for (const bracket of ["100m_to_500m", "over_500m"] as const) {
-      expect(generateWizardSteps({ ...base, investmentBracket: bracket }).map((s) => s.id)).toContain(
-        "investment_agreement",
-      );
+      expect(
+        generateWizardSteps({ ...base, investmentBracket: bracket }).map((s) => s.id),
+      ).toContain("investment_agreement");
     }
     for (const bracket of ["under_5m", "5m_to_25m", "25m_to_100m"] as const) {
       expect(
@@ -288,9 +288,7 @@ describe("firstActiveStepId & wizardProgress", () => {
 
   it("firstActiveStepId is the first non-completed/non-skipped step", () => {
     expect(firstActiveStepId(steps)).toBe("cri_registration");
-    const advanced = steps.map((s, i) =>
-      i === 0 ? { ...s, status: "completed" as const } : s,
-    );
+    const advanced = steps.map((s, i) => (i === 0 ? { ...s, status: "completed" as const } : s));
     expect(firstActiveStepId(advanced)).toBe("certificat_negatif");
   });
 
@@ -298,18 +296,14 @@ describe("firstActiveStepId & wizardProgress", () => {
     const fresh = wizardProgress(steps);
     expect(fresh).toEqual({ completed: 0, total: steps.length, percent: 0 });
 
-    const two = steps.map((s, i) =>
-      i < 2 ? { ...s, status: "completed" as const } : s,
-    );
+    const two = steps.map((s, i) => (i < 2 ? { ...s, status: "completed" as const } : s));
     const p = wizardProgress(two);
     expect(p.completed).toBe(2);
     expect(p.percent).toBe(Math.round((2 / steps.length) * 100));
   });
 
   it("skipped steps are excluded from the denominator", () => {
-    const withSkip = steps.map((s, i) =>
-      i === 0 ? { ...s, status: "skipped" as const } : s,
-    );
+    const withSkip = steps.map((s, i) => (i === 0 ? { ...s, status: "skipped" as const } : s));
     const p = wizardProgress(withSkip);
     expect(p.total).toBe(steps.length - 1);
   });

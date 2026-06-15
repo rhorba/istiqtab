@@ -54,11 +54,9 @@ export async function putPrivateObject(
 
 /** Generate a short-lived (15-min) presigned GET URL for a private object. */
 export async function getPrivateDownloadUrl(key: string): Promise<string> {
-  return getSignedUrl(
-    r2(),
-    new GetObjectCommand({ Bucket: env.R2_PRIVATE_BUCKET, Key: key }),
-    { expiresIn: SIGNED_URL_TTL_SECONDS },
-  );
+  return getSignedUrl(r2(), new GetObjectCommand({ Bucket: env.R2_PRIVATE_BUCKET, Key: key }), {
+    expiresIn: SIGNED_URL_TTL_SECONDS,
+  });
 }
 
 /** Permanently delete a private object. */

@@ -6,7 +6,14 @@ import {
 } from "@/app/[locale]/(investor)/investor/wizard/actions";
 import { Badge } from "@/components/ui/badge";
 import type { Locale, WizardStep, WizardStepStatus } from "@istiqtab/core";
-import { CheckCircle2, Circle, CircleDot, CircleSlash, ExternalLink, RefreshCw } from "lucide-react";
+import {
+  CheckCircle2,
+  Circle,
+  CircleDot,
+  CircleSlash,
+  ExternalLink,
+  RefreshCw,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
@@ -34,7 +41,13 @@ const DOC_LABELS: Record<string, string> = {
   other: "Other",
 };
 
-const SELECTABLE: WizardStepStatus[] = ["pending", "in_progress", "completed", "blocked", "skipped"];
+const SELECTABLE: WizardStepStatus[] = [
+  "pending",
+  "in_progress",
+  "completed",
+  "blocked",
+  "skipped",
+];
 
 function localizedTitle(step: WizardStep, locale: Locale): string {
   if (locale === "fr") return step.titleFr;
@@ -123,9 +136,7 @@ export function WizardChecklist({ locale, steps, progress }: Props) {
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-semibold text-gray-400">
-                    Step {index + 1}
-                  </span>
+                  <span className="text-xs font-semibold text-gray-400">Step {index + 1}</span>
                   {step.estimatedDays !== undefined && (
                     <Badge variant="default">~{step.estimatedDays} days</Badge>
                   )}
