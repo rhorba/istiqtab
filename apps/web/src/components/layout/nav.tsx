@@ -24,6 +24,7 @@ function getNavLinks(role: Role | null, locale: string): NavLink[] {
     case "consultant":
       return [
         { href: `${base}/investor/wizard`, label: "Setup Wizard" },
+        { href: `${base}/investor/documents`, label: "Documents" },
         { href: `${base}/calculator`, label: "Calculator" },
         { href: `${base}/investor/partners`, label: "Find Partners" },
         { href: `${base}/investor/experts`, label: "Book Expert" },

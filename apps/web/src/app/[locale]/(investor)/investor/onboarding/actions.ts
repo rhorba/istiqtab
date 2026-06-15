@@ -4,6 +4,7 @@ import { type FormState, zodFieldErrors } from "@/lib/action-state";
 import { withRole } from "@/lib/with-role";
 import { InvestorProfileCreateSchema } from "@istiqtab/core";
 import { db, investorProfiles, withUserContext } from "@istiqtab/db";
+import { firstActiveStepId, generateWizardSteps } from "@istiqtab/wizard";
 
 /**
  * Create or update the signed-in investor's profile. Writes run under the
@@ -30,6 +31,19 @@ export const upsertInvestorProfile = withRole(
     const { userId, role } = { userId: session.user.id, role: session.user.role };
     const data = parsed.data;
 
+    // Seed the personalized setup checklist on first creation. On update we
+    // leave wizardSteps/currentStep untouched to preserve the investor's
+    // progress — an explicit regenerate action handles profile changes.
+    const wizardSteps = generateWizardSteps({
+      sector: data.sector,
+      activityType: data.activityType,
+      investmentBracket: data.investmentBracket,
+      targetRegions: data.targetRegions,
+      companyCountry: data.companyCountry,
+      jobsToCreate: data.jobsToCreate ?? null,
+      preferredLegalForm: data.preferredLegalForm ?? null,
+    });
+
     await withUserContext(db, userId, role, async (tx) => {
       await tx
         .insert(investorProfiles)
@@ -43,6 +57,8 @@ export const upsertInvestorProfile = withRole(
           targetRegions: data.targetRegions,
           jobsToCreate: data.jobsToCreate ?? null,
           preferredLegalForm: data.preferredLegalForm ?? null,
+          wizardSteps,
+          currentStep: firstActiveStepId(wizardSteps) ?? null,
         })
         .onConflictDoUpdate({
           target: investorProfiles.userId,

@@ -1,2 +1,6 @@
-// Wizard package — implemented in Sprint 2
-export {};
+export {
+  type WizardProfileInput,
+  generateWizardSteps,
+  firstActiveStepId,
+  wizardProgress,
+} from "./generate.js";
