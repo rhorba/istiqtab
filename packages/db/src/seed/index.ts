@@ -625,28 +625,31 @@ async function seed(): Promise<void> {
       { type: "logistics", company: "TangierMed Logistics" },
     ];
 
-    await tx.insert(partnerProfiles).values(
-      partnerSpecs.map((p, i) => ({
-        userId: partnerUsers[i]!.id,
-        companyName: p.company,
-        ice: `00${1000 + i}`,
-        partnerType: p.type,
-        sectors: ["automotive", "agrifood", "logistics"] as (
-          | "automotive"
-          | "agrifood"
-          | "logistics"
-        )[],
-        regions: ["tanger_tetouan", "casablanca_settat"] as (
-          | "tanger_tetouan"
-          | "casablanca_settat"
-        )[],
-        languages: ["en", "fr", "ar"] as ("en" | "fr" | "ar")[],
-        description: `${p.company} supports international investors with ${p.type.replace(/_/g, " ")} services across Morocco.`,
-        verified: i % 2 === 0,
-        avgRating: 4 + (i % 10) / 10,
-        reviewCount: 5 + i,
-      })),
-    );
+    const partnerRows = await tx
+      .insert(partnerProfiles)
+      .values(
+        partnerSpecs.map((p, i) => ({
+          userId: partnerUsers[i]!.id,
+          companyName: p.company,
+          ice: `00${1000 + i}`,
+          partnerType: p.type,
+          sectors: ["automotive", "agrifood", "logistics"] as (
+            | "automotive"
+            | "agrifood"
+            | "logistics"
+          )[],
+          regions: ["tanger_tetouan", "casablanca_settat"] as (
+            | "tanger_tetouan"
+            | "casablanca_settat"
+          )[],
+          languages: ["en", "fr", "ar"] as ("en" | "fr" | "ar")[],
+          description: `${p.company} supports international investors with ${p.type.replace(/_/g, " ")} services across Morocco.`,
+          verified: i % 2 === 0,
+          avgRating: 4 + (i % 10) / 10,
+          reviewCount: 5 + i,
+        })),
+      )
+      .returning();
 
     await tx.insert(criRegions).values(criRows);
     await tx.insert(incentiveRules).values(ruleRows);
@@ -699,6 +702,33 @@ async function seed(): Promise<void> {
         totalEstimatedBenefit: "Indicative — confirm final figures with your CRI",
       })),
     );
+
+    // Demo introduction requests (investor → partner), one per status, all to
+    // verified partners (even indices). Showcases the admin mediation queue.
+    const verifiedPartners = partnerRows.filter((p) => p.verified);
+    await tx.insert(introductionRequests).values([
+      {
+        investorId: investorRows[0]!.id,
+        partnerId: verifiedPartners[0]!.id,
+        message:
+          "We are setting up an automotive parts plant near Tangier and need legal support for company registration (SARL) and industrial land lease.",
+        status: "pending",
+      },
+      {
+        investorId: investorRows[1]!.id,
+        partnerId: verifiedPartners[1]!.id,
+        message:
+          "Looking for a recruitment partner to staff a 200-seat BPO centre in Casablanca with French/English speakers.",
+        status: "accepted",
+      },
+      {
+        investorId: investorRows[2]!.id,
+        partnerId: verifiedPartners[2]!.id,
+        message:
+          "Need industrial real estate advisory for a logistics hub close to Tanger Med port.",
+        status: "completed",
+      },
+    ]);
   });
 
   const counts = await db.select().from(users);

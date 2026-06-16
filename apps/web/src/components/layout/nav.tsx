@@ -27,6 +27,7 @@ function getNavLinks(role: Role | null, locale: string): NavLink[] {
         { href: `${base}/investor/documents`, label: "Documents" },
         { href: `${base}/calculator`, label: "Calculator" },
         { href: `${base}/investor/partners`, label: "Find Partners" },
+        { href: `${base}/investor/introductions`, label: "My Introductions" },
         { href: `${base}/investor/experts`, label: "Book Expert" },
         { href: `${base}/investor/advisor`, label: "Ask Istiqtab" },
       ];
@@ -43,6 +44,7 @@ function getNavLinks(role: Role | null, locale: string): NavLink[] {
     case "admin":
       return [
         { href: `${base}/admin`, label: "Admin" },
+        { href: `${base}/admin/introductions`, label: "Introductions" },
         { href: `${base}/calculator`, label: "Calculator" },
       ];
   }
