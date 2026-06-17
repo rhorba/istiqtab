@@ -12,6 +12,7 @@
 import { randomUUID } from "node:crypto";
 import { REGION_LABELS } from "@istiqtab/core";
 import * as argon2 from "argon2";
+import { eq } from "drizzle-orm";
 import { db } from "../client.js";
 import { withUserContext } from "../rls/index.js";
 import {
@@ -520,86 +521,133 @@ async function seed(): Promise<void> {
       ])
       .returning();
 
-    await tx.insert(expertProfiles).values([
-      {
-        userId: expertUsers.amine.id,
-        name: "Amine Bennani",
-        title: "Investment lawyer — corporate setup",
-        specializations: ["automotive", "aerospace", "logistics"],
-        languages: ["en", "fr", "ar"],
-        hourlyRateMAD: 1500,
-        hourlyRateEUR: 140,
-        bio: "20 years advising foreign manufacturers on company setup and Investment Charter agreements.",
-        verified: true,
-        avgRating: 4.9,
-        sessionCount: 64,
-      },
-      {
-        userId: expertUsers.fatima.id,
-        name: "Fatima Zahra El Fassi",
-        title: "Investment lawyer — M&A and JV",
-        specializations: ["finance", "real_estate", "tech"],
-        languages: ["en", "fr"],
-        hourlyRateMAD: 1800,
-        hourlyRateEUR: 170,
-        bio: "Specialist in joint ventures and foreign ownership structuring across regulated sectors.",
-        verified: true,
-        avgRating: 4.8,
-        sessionCount: 41,
-      },
-      {
-        userId: expertUsers.youssef.id,
-        name: "Youssef Tazi",
-        title: "Tax advisor — Charter incentives",
-        specializations: ["agrifood", "automotive", "textile"],
-        languages: ["en", "fr", "ar"],
-        hourlyRateMAD: 1200,
-        hourlyRateEUR: 115,
-        bio: "Former Big Four tax partner; optimizes IS/TVA exemptions under the 2022 Charter.",
-        verified: true,
-        avgRating: 4.7,
-        sessionCount: 88,
-      },
-      {
-        userId: expertUsers.leila.id,
-        name: "Leila Cherkaoui",
-        title: "Industrial real estate specialist",
-        specializations: ["real_estate", "logistics", "automotive"],
-        languages: ["en", "fr"],
-        hourlyRateMAD: 1000,
-        hourlyRateEUR: 95,
-        bio: "Sources industrial land and free-zone plots near Tangier Med and Casablanca.",
-        verified: true,
-        avgRating: 4.6,
-        sessionCount: 33,
-      },
-      {
-        userId: expertUsers.omar.id,
-        name: "Omar Benjelloun",
-        title: "Ex-AMDIE official — FDI facilitation",
-        specializations: ["renewables", "bpo_ites", "pharma"],
-        languages: ["en", "fr", "ar"],
-        hourlyRateMAD: 2000,
-        hourlyRateEUR: 190,
-        bio: "15 years at AMDIE; deep network across the 12 CRIs and the interministerial commission.",
-        verified: true,
-        avgRating: 5.0,
-        sessionCount: 52,
-      },
-      {
-        userId: expertUsers.nadia.id,
-        name: "Nadia Alaoui",
-        title: "Automotive supply-chain specialist",
-        specializations: ["automotive", "aerospace"],
-        languages: ["en", "fr"],
-        hourlyRateMAD: 1300,
-        hourlyRateEUR: 125,
-        bio: "Advises tier-1/tier-2 suppliers entering the Tangier and Kenitra automotive clusters.",
-        verified: true,
-        avgRating: 4.8,
-        sessionCount: 29,
-      },
+    const expertRows = await tx
+      .insert(expertProfiles)
+      .values([
+        {
+          userId: expertUsers.amine.id,
+          name: "Amine Bennani",
+          title: "Investment lawyer — corporate setup",
+          specializations: ["automotive", "aerospace", "logistics"],
+          languages: ["en", "fr", "ar"],
+          hourlyRateMAD: 1500,
+          hourlyRateEUR: 140,
+          bio: "20 years advising foreign manufacturers on company setup and Investment Charter agreements.",
+          verified: true,
+          avgRating: 4.9,
+          sessionCount: 64,
+        },
+        {
+          userId: expertUsers.fatima.id,
+          name: "Fatima Zahra El Fassi",
+          title: "Investment lawyer — M&A and JV",
+          specializations: ["finance", "real_estate", "tech"],
+          languages: ["en", "fr"],
+          hourlyRateMAD: 1800,
+          hourlyRateEUR: 170,
+          bio: "Specialist in joint ventures and foreign ownership structuring across regulated sectors.",
+          verified: true,
+          avgRating: 4.8,
+          sessionCount: 41,
+        },
+        {
+          userId: expertUsers.youssef.id,
+          name: "Youssef Tazi",
+          title: "Tax advisor — Charter incentives",
+          specializations: ["agrifood", "automotive", "textile"],
+          languages: ["en", "fr", "ar"],
+          hourlyRateMAD: 1200,
+          hourlyRateEUR: 115,
+          bio: "Former Big Four tax partner; optimizes IS/TVA exemptions under the 2022 Charter.",
+          verified: true,
+          avgRating: 4.7,
+          sessionCount: 88,
+        },
+        {
+          userId: expertUsers.leila.id,
+          name: "Leila Cherkaoui",
+          title: "Industrial real estate specialist",
+          specializations: ["real_estate", "logistics", "automotive"],
+          languages: ["en", "fr"],
+          hourlyRateMAD: 1000,
+          hourlyRateEUR: 95,
+          bio: "Sources industrial land and free-zone plots near Tangier Med and Casablanca.",
+          verified: true,
+          avgRating: 4.6,
+          sessionCount: 33,
+        },
+        {
+          userId: expertUsers.omar.id,
+          name: "Omar Benjelloun",
+          title: "Ex-AMDIE official — FDI facilitation",
+          specializations: ["renewables", "bpo_ites", "pharma"],
+          languages: ["en", "fr", "ar"],
+          hourlyRateMAD: 2000,
+          hourlyRateEUR: 190,
+          bio: "15 years at AMDIE; deep network across the 12 CRIs and the interministerial commission.",
+          verified: true,
+          avgRating: 5.0,
+          sessionCount: 52,
+        },
+        {
+          userId: expertUsers.nadia.id,
+          name: "Nadia Alaoui",
+          title: "Automotive supply-chain specialist",
+          specializations: ["automotive", "aerospace"],
+          languages: ["en", "fr"],
+          hourlyRateMAD: 1300,
+          hourlyRateEUR: 125,
+          bio: "Advises tier-1/tier-2 suppliers entering the Tangier and Kenitra automotive clusters.",
+          verified: true,
+          avgRating: 4.8,
+          sessionCount: 29,
+        },
+      ])
+      .returning();
+
+    // ─── Expert availability slots + one demo booking ────────────────────────
+    // Future slots (UTC) for the first three experts so the directory has
+    // something bookable. Times are anchored to "now" so seeds never go stale.
+    const dayMs = 86_400_000;
+    const at = (daysAhead: number, hourUtc: number, minutes = 0) => {
+      const d = new Date();
+      d.setUTCHours(0, 0, 0, 0);
+      return new Date(d.getTime() + daysAhead * dayMs + hourUtc * 3_600_000 + minutes * 60_000);
+    };
+
+    const slotValues = expertRows.slice(0, 3).flatMap((e, i) => [
+      { expertId: e.id, start: at(3 + i, 9), dur: 30 as const },
+      { expertId: e.id, start: at(3 + i, 11), dur: 60 as const },
+      { expertId: e.id, start: at(7 + i, 14), dur: 30 as const },
     ]);
+
+    const slotRows = await tx
+      .insert(expertSlots)
+      .values(
+        slotValues.map((s) => ({
+          expertId: s.expertId,
+          startTime: s.start,
+          endTime: new Date(s.start.getTime() + s.dur * 60_000),
+          durationMinutes: s.dur,
+        })),
+      )
+      .returning();
+
+    // Demo booking: Hans (German automotive investor) books Amine's first slot.
+    const demoSlot = slotRows[0];
+    if (demoSlot && investorRows[0] && expertRows[0]) {
+      await tx
+        .update(expertSlots)
+        .set({ booked: true, bookedByUserId: investors.hans.id })
+        .where(eq(expertSlots.id, demoSlot.id));
+      await tx.insert(expertBookings).values({
+        slotId: demoSlot.id,
+        investorId: investorRows[0].id,
+        expertId: expertRows[0].id,
+        status: "confirmed",
+        meetingUrl: `https://meet.jit.si/istiqtab-${demoSlot.id}`,
+      });
+    }
 
     const partnerSpecs: {
       type:

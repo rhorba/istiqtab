@@ -29,6 +29,7 @@ function getNavLinks(role: Role | null, locale: string): NavLink[] {
         { href: `${base}/investor/partners`, label: "Find Partners" },
         { href: `${base}/investor/introductions`, label: "My Introductions" },
         { href: `${base}/investor/experts`, label: "Book Expert" },
+        { href: `${base}/investor/bookings`, label: "My Sessions" },
         { href: `${base}/investor/advisor`, label: "Ask Istiqtab" },
       ];
     case "expert":

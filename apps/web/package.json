@@ -16,6 +16,7 @@
     "@istiqtab/ai": "workspace:*",
     "@istiqtab/incentives": "workspace:*",
     "@istiqtab/partners": "workspace:*",
+    "@istiqtab/experts": "workspace:*",
     "@istiqtab/wizard": "workspace:*",
     "@istiqtab/notifications": "workspace:*",
     "next": "^15.3.3",
