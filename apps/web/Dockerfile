@@ -28,6 +28,7 @@ COPY --from=deps /app/apps/web/node_modules ./apps/web/node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NEXT_OUTPUT_STANDALONE=1
+ENV DOCKER_BUILD=1
 
 # Build-time placeholder env vars — satisfy env.ts Zod validation at build time.
 # The real secrets are injected at RUNTIME via docker-compose.yml environment section.

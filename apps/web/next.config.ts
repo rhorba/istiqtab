@@ -48,6 +48,12 @@ const nextConfig: NextConfig = {
   // step relies on symlinks (which fail with EPERM on Windows/OneDrive). The
   // Dockerfile sets NEXT_OUTPUT_STANDALONE=1; local `pnpm build` stays portable.
   output: process.env.NEXT_OUTPUT_STANDALONE === "1" ? "standalone" : undefined,
+  // TypeScript checking is done separately (pnpm typecheck in CI). During the
+  // Docker build, pnpm workspace symlinks cause Drizzle generic types to resolve
+  // as `any`, causing false positives. Types are validated in the local/CI step.
+  typescript: {
+    ignoreBuildErrors: process.env.DOCKER_BUILD === "1",
+  },
   // Trace files from the monorepo root so the standalone bundle is complete.
   outputFileTracingRoot: join(__dirname, "../../"),
   transpilePackages: WORKSPACE_PACKAGES,
