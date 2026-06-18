@@ -22,7 +22,9 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
 
 # ── Build ─────────────────────────────────────────────────────────────────────
 FROM base AS build
+# pnpm isolates node_modules per workspace package — copy root store + each package's links
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/apps/web/node_modules ./apps/web/node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NEXT_OUTPUT_STANDALONE=1
