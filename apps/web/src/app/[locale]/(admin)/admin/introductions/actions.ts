@@ -7,7 +7,9 @@ import {
   investorProfiles,
   notifications,
   partnerProfiles,
+  users,
 } from "@istiqtab/db";
+import { sendIntroUpdate } from "@istiqtab/notifications";
 import { type IntroStatus, isValidIntroTransition } from "@istiqtab/partners";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
@@ -68,6 +70,43 @@ export const updateIntroductionStatus = withRole(
       });
     }
     await db.insert(notifications).values(news);
+
+    // Fetch emails for Resend — separate query to avoid complicating the join above.
+    const [investorUser] = await db
+      .select({ email: users.email })
+      .from(users)
+      .where(eq(users.id, row.investorUserId))
+      .limit(1);
+    const [partnerUser] = await db
+      .select({ email: users.email })
+      .from(users)
+      .where(eq(users.id, row.partnerUserId))
+      .limit(1);
+
+    const validStatuses = ["accepted", "declined", "completed"] as const;
+    type EmailStatus = (typeof validStatuses)[number];
+    if (validStatuses.includes(nextStatus as EmailStatus)) {
+      const emailStatus = nextStatus as EmailStatus;
+      const baseUrl = process.env.NEXTAUTH_URL ?? "https://istiqtab.ma";
+      if (investorUser?.email) {
+        sendIntroUpdate({
+          to: investorUser.email,
+          recipientRole: "investor",
+          partnerName: row.partnerName,
+          status: emailStatus,
+          introUrl: `${baseUrl}/en/investor/introductions`,
+        }).catch(() => {});
+      }
+      if (partnerUser?.email && (nextStatus === "accepted" || nextStatus === "completed")) {
+        sendIntroUpdate({
+          to: partnerUser.email,
+          recipientRole: "partner",
+          partnerName: row.partnerName,
+          status: emailStatus,
+          introUrl: `${baseUrl}/en/partner/dashboard`,
+        }).catch(() => {});
+      }
+    }
 
     revalidatePath("/admin/introductions");
     return { ok: true };

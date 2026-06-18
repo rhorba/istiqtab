@@ -281,5 +281,41 @@
     "you": "You",
     "advisor": "Istiqtab Advisor",
     "disclaimer": "Informational only — not financial, legal, or tax advice. Verify with your CRI or a qualified advisor."
+  },
+  "Hub": {
+    "title": "Investment Intelligence Hub",
+    "subtitle": "Research Morocco's sectors, regional investment centres, and regulatory landscape before you invest.",
+    "sectorsTitle": "Sector Investment Guides",
+    "sectorsSubtitle": "In-depth guides covering incentives, key players, and setup requirements across Morocco's priority sectors.",
+    "regionsTitle": "Regional Investment Centres (CRI)",
+    "regionsSubtitle": "Compare Morocco's 12 regions — infrastructure, incentives, sector strengths, and CRI contacts.",
+    "viewAllSectors": "View all sectors",
+    "viewAllRegions": "View all regions",
+    "sectorGuide": {
+      "overviewHeading": "Sector Overview",
+      "incentivesHeading": "Applicable Incentives",
+      "keyPlayersHeading": "Key Players & Clusters",
+      "setupHeading": "Setup Requirements",
+      "criHeading": "Relevant CRI Contacts",
+      "ctaCalculator": "Calculate My Incentives",
+      "ctaWizard": "Start Setup Wizard",
+      "backToHub": "Back to Hub",
+      "disclaimer": "Sector data is based on publicly available information. Verify specifics with your CRI or a qualified advisor."
+    },
+    "regionProfile": {
+      "capitalLabel": "Capital city",
+      "keySectorsLabel": "Key sectors",
+      "industrialZonesLabel": "Industrial zones",
+      "landPriceLabel": "Land price range",
+      "portAccessLabel": "Port / logistics access",
+      "talentPoolLabel": "Talent pool",
+      "criContactLabel": "CRI contact",
+      "criEmailLabel": "CRI email",
+      "criPhoneLabel": "CRI phone",
+      "criWebsiteLabel": "CRI website",
+      "ctaCalculator": "Calculate Incentives for this Region",
+      "ctaWizard": "Start Setup Wizard",
+      "backToHub": "Back to Hub"
+    }
   }
 }

@@ -281,5 +281,41 @@
     "you": "Vous",
     "advisor": "Conseiller Istiqtab",
     "disclaimer": "À titre informatif uniquement — ni conseil financier, juridique ou fiscal. Vérifiez auprès de votre CRI ou d’un conseiller qualifié."
+  },
+  "Hub": {
+    "title": "Hub Intelligence Investissement",
+    "subtitle": "Explorez les secteurs du Maroc, les centres regionaux d investissement et le cadre reglementaire avant d investir.",
+    "sectorsTitle": "Guides d investissement par secteur",
+    "sectorsSubtitle": "Guides approfondis couvrant les incitations, les acteurs cles et les exigences d installation par secteur prioritaire.",
+    "regionsTitle": "Centres Regionaux d Investissement (CRI)",
+    "regionsSubtitle": "Comparez les 12 regions du Maroc — infrastructures, incitations, secteurs forts et contacts CRI.",
+    "viewAllSectors": "Tous les secteurs",
+    "viewAllRegions": "Toutes les regions",
+    "sectorGuide": {
+      "overviewHeading": "Vue d ensemble du secteur",
+      "incentivesHeading": "Incitations applicables",
+      "keyPlayersHeading": "Acteurs cles & clusters",
+      "setupHeading": "Conditions d installation",
+      "criHeading": "Contacts CRI concernes",
+      "ctaCalculator": "Calculer mes incitations",
+      "ctaWizard": "Demarrer l assistant",
+      "backToHub": "Retour au Hub",
+      "disclaimer": "Les donnees sectorielles sont basees sur des informations publiques. Verifiez les details aupres de votre CRI ou d un conseiller qualifie."
+    },
+    "regionProfile": {
+      "capitalLabel": "Chef-lieu",
+      "keySectorsLabel": "Secteurs cles",
+      "industrialZonesLabel": "Zones industrielles",
+      "landPriceLabel": "Prix du foncier",
+      "portAccessLabel": "Acces port / logistique",
+      "talentPoolLabel": "Bassin d emploi",
+      "criContactLabel": "Contact CRI",
+      "criEmailLabel": "E-mail CRI",
+      "criPhoneLabel": "Telephone CRI",
+      "criWebsiteLabel": "Site CRI",
+      "ctaCalculator": "Calculer les incitations pour cette region",
+      "ctaWizard": "Demarrer l assistant",
+      "backToHub": "Retour au Hub"
+    }
   }
 }

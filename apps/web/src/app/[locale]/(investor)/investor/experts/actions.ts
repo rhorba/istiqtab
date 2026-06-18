@@ -9,8 +9,10 @@ import {
   expertSlots,
   investorProfiles,
   notifications,
+  users,
   withUserContext,
 } from "@istiqtab/db";
+import { sendBookingConfirmation } from "@istiqtab/notifications";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -77,6 +79,13 @@ export const bookSlot = withRole(
       return { ok: false, error: "This expert is no longer available." };
     }
 
+    // Fetch the expert's email for the confirmation email.
+    const [expertUser] = await db
+      .select({ email: users.email })
+      .from(users)
+      .where(eq(users.id, expert.userId))
+      .limit(1);
+
     // Atomic claim + booking insert under the investor's RLS context.
     let bookedOk = false;
     await withUserContext(db, session.user.id, session.user.role, async (tx) => {
@@ -125,6 +134,35 @@ export const bookSlot = withRole(
         linkUrl: "/expert/sessions",
       },
     ]);
+
+    // Resend confirmation emails (fire-and-forget — email failure never rolls back the booking).
+    const investorEmail = session.user.email;
+    const expertEmail = expertUser?.email;
+    const slotStart = slot.startTime.toISOString();
+    const slotDuration = Math.round(
+      (slot.endTime.getTime() - slot.startTime.getTime()) / 60_000,
+    ) as 30 | 60;
+    const meetingLink = `https://meet.jit.si/istiqtab-${slotId}`;
+    if (investorEmail) {
+      sendBookingConfirmation({
+        to: investorEmail,
+        recipientRole: "investor",
+        expertName: expert.name,
+        startTime: slotStart,
+        durationMinutes: slotDuration,
+        meetingUrl: meetingLink,
+      }).catch(() => {});
+    }
+    if (expertEmail) {
+      sendBookingConfirmation({
+        to: expertEmail,
+        recipientRole: "expert",
+        expertName: expert.name,
+        startTime: slotStart,
+        durationMinutes: slotDuration,
+        meetingUrl: meetingLink,
+      }).catch(() => {});
+    }
 
     revalidatePath(`/investor/experts/${expert.id}`);
     revalidatePath("/investor/bookings");
