@@ -1,0 +1,25 @@
+# Exclude all node_modules — the deps stage installs Linux-native ones.
+# Without this, COPY . . would overwrite Linux binaries with Windows ones.
+**/node_modules
+**/.next
+**/dist
+**/.turbo
+
+# Dev artifacts
+.env
+.env.*
+!.env.example
+*.log
+coverage
+playwright-report
+test-results
+
+# IDE / OS
+.idea
+.vscode
+*.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
