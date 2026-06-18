@@ -4,7 +4,7 @@
 FROM node:20-alpine AS base
 ENV PNPM_HOME=/pnpm
 ENV PATH=$PNPM_HOME:$PATH
-RUN corepack enable
+RUN npm install -g pnpm@10.28.1 --quiet
 # psql client for applying init.sql as superuser
 RUN apk add --no-cache postgresql16-client
 WORKDIR /app
