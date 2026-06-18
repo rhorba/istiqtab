@@ -73,4 +73,30 @@
   html[dir="rtl"] h6 {
     font-family: var(--font-arabic);
   }
+
+  /* ── RTL: text inputs flow right-to-left ── */
+  html[dir="rtl"] input,
+  html[dir="rtl"] textarea,
+  html[dir="rtl"] select {
+    text-align: right;
+    direction: rtl;
+  }
+
+  /* ── RTL: paragraph / label text aligns to reading start ── */
+  html[dir="rtl"] p,
+  html[dir="rtl"] label,
+  html[dir="rtl"] li {
+    text-align: right;
+  }
+
+  /* ── RTL: table column alignment mirrors LTR layout ── */
+  html[dir="rtl"] th,
+  html[dir="rtl"] td {
+    text-align: right;
+  }
+
+  /* RTL: flip chevron / arrow icons used in navigation and breadcrumbs */
+  html[dir="rtl"] .rtl-flip {
+    transform: scaleX(-1);
+  }
 }

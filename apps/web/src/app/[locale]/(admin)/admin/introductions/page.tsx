@@ -1,11 +1,9 @@
-import { auth } from "@/auth";
 import { IntroAdminActions } from "@/components/partner/intro-admin-actions";
 import { db, introductionRequests, investorProfiles, partnerProfiles, users } from "@istiqtab/db";
 import type { IntroStatus } from "@istiqtab/partners";
 import { desc, eq } from "drizzle-orm";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = { title: "Introduction requests" };
 
@@ -20,14 +18,6 @@ type Props = { params: Promise<{ locale: string }> };
 
 export default async function AdminIntroductionsPage({ params }: Props) {
   const { locale } = await params;
-  const session = await auth();
-
-  if (!session?.user?.id) {
-    redirect(`/${locale}/auth/sign-in?callbackUrl=/${locale}/admin/introductions`);
-  }
-  if (session.user.role !== "admin") {
-    redirect(`/${locale}`);
-  }
 
   const t = await getTranslations({ locale, namespace: "Partners" });
 
@@ -56,54 +46,52 @@ export default async function AdminIntroductionsPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--color-surface)] px-4 py-12">
-      <div className="mx-auto w-full max-w-5xl">
-        <header className="mb-8">
-          <h1 className="text-3xl font-semibold font-serif text-[var(--color-navy)]">
-            {t("adminTitle")}
-          </h1>
-          <p className="mt-2 text-sm text-gray-500">{t("adminSubtitle")}</p>
-        </header>
+    <div>
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold font-serif text-[var(--color-navy)]">
+          {t("adminTitle")}
+        </h1>
+        <p className="mt-2 text-sm text-gray-400">{t("adminSubtitle")}</p>
+      </header>
 
-        {rows.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-[var(--color-border)] bg-white p-12 text-center text-sm text-gray-500">
-            {t("adminEmpty")}
-          </div>
-        ) : (
-          <ul className="space-y-3">
-            {rows.map((r) => (
-              <li
-                key={r.id}
-                className="rounded-2xl border border-[var(--color-border)] bg-white p-5 shadow-sm"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-[var(--color-navy)]">
-                        {r.investorCompany ?? r.investorName ?? r.investorEmail}
-                      </span>
-                      <span className="text-gray-400">→</span>
-                      <span className="text-sm font-semibold text-[var(--color-navy)]">
-                        {r.partnerName}
-                      </span>
-                      <span
-                        className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_STYLES[r.status]}`}
-                      >
-                        {statusLabels[r.status]}
-                      </span>
-                    </div>
-                    <p className="mt-2 text-sm text-gray-600">{r.message}</p>
-                    <p className="mt-2 text-xs text-gray-400">
-                      {r.investorEmail} · {r.createdAt.toLocaleDateString(locale)}
-                    </p>
+      {rows.length === 0 ? (
+        <div className="rounded-2xl border border-dashed border-[var(--color-border)] bg-white p-12 text-center text-sm text-gray-500">
+          {t("adminEmpty")}
+        </div>
+      ) : (
+        <ul className="space-y-3">
+          {rows.map((r) => (
+            <li
+              key={r.id}
+              className="rounded-2xl border border-[var(--color-border)] bg-white p-5 shadow-sm"
+            >
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold text-[var(--color-navy)]">
+                      {r.investorCompany ?? r.investorName ?? r.investorEmail}
+                    </span>
+                    <span className="text-gray-400">→</span>
+                    <span className="text-sm font-semibold text-[var(--color-navy)]">
+                      {r.partnerName}
+                    </span>
+                    <span
+                      className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_STYLES[r.status]}`}
+                    >
+                      {statusLabels[r.status]}
+                    </span>
                   </div>
-                  <IntroAdminActions requestId={r.id} status={r.status} labels={statusLabels} />
+                  <p className="mt-2 text-sm text-gray-600">{r.message}</p>
+                  <p className="mt-2 text-xs text-gray-400">
+                    {r.investorEmail} · {r.createdAt.toLocaleDateString(locale)}
+                  </p>
                 </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </main>
+                <IntroAdminActions requestId={r.id} status={r.status} labels={statusLabels} />
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }

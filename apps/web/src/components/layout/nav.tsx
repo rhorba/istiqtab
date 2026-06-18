@@ -44,9 +44,11 @@ function getNavLinks(role: Role | null, locale: string): NavLink[] {
       ];
     case "admin":
       return [
-        { href: `${base}/admin`, label: "Admin" },
+        { href: `${base}/admin`, label: "Dashboard" },
+        { href: `${base}/admin/wizard`, label: "Wizard" },
+        { href: `${base}/admin/ai`, label: "AI Usage" },
+        { href: `${base}/admin/bookings`, label: "Bookings" },
         { href: `${base}/admin/introductions`, label: "Introductions" },
-        { href: `${base}/calculator`, label: "Calculator" },
       ];
   }
 }

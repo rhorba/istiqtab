@@ -10,13 +10,16 @@ import {
 } from "@istiqtab/ai";
 import { AIChatMessageSchema, ORIGIN_LABELS, label } from "@istiqtab/core";
 import { aiChatMessages, db, investorProfiles, withUserContext } from "@istiqtab/db";
-import { and, asc, eq } from "drizzle-orm";
+import { and, asc, count, eq, gte } from "drizzle-orm";
 
 export type AdvisorReply = { ok: true; reply: string } | { ok: false; error: string };
 
 // Cap how much prior conversation we replay into the model (cost control); the
 // full history is still persisted for the user. 2 messages per turn.
 const HISTORY_TURNS = 12;
+
+// Daily question cap per user — protects against runaway token costs.
+const DAILY_QUESTION_LIMIT = 20;
 
 /**
  * Send a question to the AI advisor.
@@ -44,6 +47,26 @@ export const sendAdvisorMessage = withRole(
       .from(investorProfiles)
       .where(eq(investorProfiles.userId, userId))
       .limit(1);
+
+    // ── Rate limit: 20 user questions per UTC day (cost protection) ──
+    const utcMidnight = new Date();
+    utcMidnight.setUTCHours(0, 0, 0, 0);
+    const [rateRow] = await db
+      .select({ c: count() })
+      .from(aiChatMessages)
+      .where(
+        and(
+          eq(aiChatMessages.userId, userId),
+          eq(aiChatMessages.role, "user"),
+          gte(aiChatMessages.createdAt, utcMidnight),
+        ),
+      );
+    if ((rateRow?.c ?? 0) >= DAILY_QUESTION_LIMIT) {
+      return {
+        ok: false,
+        error: `Daily limit reached (${DAILY_QUESTION_LIMIT} questions per day). Your limit resets at midnight UTC.`,
+      };
+    }
 
     // ── Guardrail 1: block prompt-injection before spending a token ──
     const injection = detectInjection(text);
