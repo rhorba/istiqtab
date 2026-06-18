@@ -26,6 +26,26 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NEXT_OUTPUT_STANDALONE=1
+
+# Build-time placeholder env vars — satisfy env.ts Zod validation at build time.
+# The real secrets are injected at RUNTIME via docker-compose.yml environment section.
+# These values are inert (they don't connect to any real service during build).
+ENV DATABASE_URL=postgresql://build:placeholder@localhost:5432/istiqtab
+ENV NEXTAUTH_SECRET=build-placeholder-minimum-32-chars-xxxxxxxx
+ENV NEXTAUTH_URL=http://localhost:3000
+ENV GOOGLE_CLIENT_ID=build-placeholder
+ENV GOOGLE_CLIENT_SECRET=build-placeholder
+ENV LINKEDIN_CLIENT_ID=build-placeholder
+ENV LINKEDIN_CLIENT_SECRET=build-placeholder
+ENV ANTHROPIC_API_KEY=sk-ant-build-placeholder-not-a-real-key
+ENV RESEND_API_KEY=re_build-placeholder
+ENV R2_ACCOUNT_ID=build-placeholder
+ENV R2_ACCESS_KEY_ID=build-placeholder
+ENV R2_SECRET_ACCESS_KEY=build-placeholder
+ENV R2_PRIVATE_BUCKET=istiqtab-private
+ENV R2_PUBLIC_BUCKET=istiqtab-public
+ENV R2_PUBLIC_URL=https://build-placeholder.r2.dev
+
 RUN pnpm --filter web build
 
 # ── Runtime ───────────────────────────────────────────────────────────────────
