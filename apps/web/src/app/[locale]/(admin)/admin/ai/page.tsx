@@ -108,7 +108,7 @@ export default async function AdminAiPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-[var(--color-border)]">
-                {dailyVolume.map((r) => (
+                {(dailyVolume as Array<{ day: string; c: number }>).map((r) => (
                   <tr key={r.day}>
                     <td className="px-5 py-3 font-medium text-[var(--color-navy)]">{r.day}</td>
                     <td className="px-5 py-3 text-right tabular-nums text-gray-600">{r.c}</td>
