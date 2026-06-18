@@ -5,7 +5,9 @@ if (typeof (globalThis as { window?: unknown }).window !== "undefined") {
   throw new Error("@istiqtab/notifications must only be used on the server");
 }
 
-const FROM = "Istiqtab <noreply@istiqtab.ma>";
+function getFrom(): string {
+  return process.env.RESEND_FROM_EMAIL ?? "Istiqtab <noreply@istiqtab.ma>";
+}
 
 function getResend(): Resend {
   const key = process.env.RESEND_API_KEY;
@@ -82,7 +84,7 @@ export async function sendBookingConfirmation(
          <p><a class="btn" href="${meetingUrl}">Join meeting</a></p>
          <p style="font-size:13px;color:#888">Log in to Istiqtab to view session details and manage your availability.</p>`;
 
-  await getResend().emails.send({ from: FROM, to, subject, html: layout(body) });
+  await getResend().emails.send({ from: getFrom(), to, subject, html: layout(body) });
 }
 
 // ── Introduction status update ────────────────────────────────────────────────
@@ -120,7 +122,7 @@ export async function sendIntroUpdate(payload: IntroUpdatePayload): Promise<void
          <p>Our team will be in touch shortly with next steps.</p>
          <p><a class="btn" href="${introUrl}">View on Istiqtab</a></p>`;
 
-  await getResend().emails.send({ from: FROM, to, subject, html: layout(body) });
+  await getResend().emails.send({ from: getFrom(), to, subject, html: layout(body) });
 }
 
 // ── Wizard step reminder ──────────────────────────────────────────────────────
@@ -143,5 +145,5 @@ export async function sendWizardReminder(payload: WizardReminderPayload): Promis
     <p><a class="btn" href="${wizardUrl}">Continue your setup</a></p>
     <p style="font-size:13px;color:#888">Typical company setup in Morocco takes 6–10 weeks. Completing each step on time keeps your project on track.</p>`;
 
-  await getResend().emails.send({ from: FROM, to, subject, html: layout(body) });
+  await getResend().emails.send({ from: getFrom(), to, subject, html: layout(body) });
 }
