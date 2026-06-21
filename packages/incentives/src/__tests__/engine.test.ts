@@ -214,8 +214,8 @@ describe("computeIncentives — output shape & determinism", () => {
     const items = computeIncentives(input, RULES).applicableIncentives;
     const priorityOf = new Map(RULES.map((r) => [r.incentiveType, r.priority]));
     for (let i = 1; i < items.length; i++) {
-      expect(priorityOf.get(items[i - 1]?.type)!).toBeGreaterThanOrEqual(
-        priorityOf.get(items[i]?.type)!,
+      expect(priorityOf.get(items[i - 1]!.type)!).toBeGreaterThanOrEqual(
+        priorityOf.get(items[i]!.type)!,
       );
     }
   });

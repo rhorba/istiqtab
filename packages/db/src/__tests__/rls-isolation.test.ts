@@ -53,13 +53,13 @@ describe.skipIf(!superUrl || !appUrl)("investor_documents RLS isolation", () => 
     const [doc] = await superDb
       .insert(investorDocuments)
       .values({
-        investorId: ownerProfile?.id,
+        investorId: ownerProfile!.id,
         userId: ownerId,
         type: "passport",
         fileKey: `private/${ownerId}/passport.pdf`,
       })
       .returning();
-    documentId = doc?.id;
+    documentId = doc!.id;
   });
 
   afterAll(async () => {
