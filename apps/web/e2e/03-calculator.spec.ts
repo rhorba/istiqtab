@@ -7,7 +7,8 @@ test.describe("Incentives Calculator (anonymous)", () => {
 
   test("page loads with correct title", async ({ page }) => {
     await expect(page).toHaveTitle(/Calculator|Incentives/i);
-    await expect(page.getByText("Investment Charter 2022")).toBeVisible();
+    // Use .first() because "Investment Charter 2022" appears in both the label and the subtitle text
+    await expect(page.getByText("Investment Charter 2022", { exact: true }).first()).toBeVisible();
   });
 
   test("renders calculator form", async ({ page }) => {

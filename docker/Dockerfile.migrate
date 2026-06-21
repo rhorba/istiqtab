@@ -29,7 +29,7 @@ COPY packages/db ./packages/db
 #                    the app role already has SUPERUSER — dev convenience only).
 CMD sh -c '\
   echo "[migrate] running Drizzle migrations..." && \
-  cd /app/packages/db && npx drizzle-kit migrate && \
+  cd /app/packages/db && DATABASE_URL="${SUPERUSER_URL:-$DATABASE_URL}" pnpm exec drizzle-kit migrate && \
   echo "[migrate] applying RLS policies (init.sql)..." && \
   psql "${SUPERUSER_URL:-$DATABASE_URL}" -v ON_ERROR_STOP=1 -f /app/packages/db/src/init/init.sql && \
   echo "[migrate] done."'

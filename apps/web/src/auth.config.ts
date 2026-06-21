@@ -7,6 +7,9 @@ import type { NextAuthConfig } from "next-auth";
  */
 export const authConfig = {
   secret: process.env.NEXTAUTH_SECRET,
+  // Required when running behind a reverse proxy (Caddy/nginx) in Docker.
+  // Tells Auth.js to trust the incoming host header instead of rejecting it.
+  trustHost: true,
   pages: {
     signIn: "/en/auth/sign-in",
     error: "/en/auth/error",

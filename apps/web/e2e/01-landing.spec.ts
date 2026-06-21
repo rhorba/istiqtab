@@ -33,11 +33,11 @@ test.describe("Landing page", () => {
 
   test("shows 'What Istiqtab covers' trust strip with 4 items", async ({ page }) => {
     await expect(page.getByText("What Istiqtab covers")).toBeVisible();
-    const _items = page.locator("text=Setup Wizard, text=Incentives Calculator");
-    await expect(page.getByText("Setup Wizard")).toBeVisible();
-    await expect(page.getByText("Incentives Calculator")).toBeVisible();
-    await expect(page.getByText("Partner Finder")).toBeVisible();
-    await expect(page.getByText("AI Advisor")).toBeVisible();
+    // Use exact match to avoid strict-mode violations from partial matches elsewhere on the page
+    await expect(page.getByText("Setup Wizard", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("Incentives Calculator", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("Partner Finder", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("AI Advisor", { exact: true }).first()).toBeVisible();
   });
 
   test("featured sector cards link to hub/sectors", async ({ page }) => {
@@ -47,9 +47,12 @@ test.describe("Landing page", () => {
   });
 
   test("'how it works' section shows 3 steps", async ({ page }) => {
-    await expect(page.getByText("Calculate your incentives")).toBeVisible();
-    await expect(page.getByText("Follow your setup wizard")).toBeVisible();
-    await expect(page.getByText("Book an expert or find a partner")).toBeVisible();
+    // Use heading role to avoid matching the CTA button text
+    await expect(page.getByRole("heading", { name: "Calculate your incentives" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Follow your setup wizard" })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Book an expert or find a partner" }),
+    ).toBeVisible();
   });
 
   test("bottom section positioning statement is visible", async ({ page }) => {

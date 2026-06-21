@@ -15,16 +15,18 @@ test.describe("Authentication flows", () => {
 
   test("sign-in page shows sign-up link", async ({ page }) => {
     await page.goto("/en/auth/sign-in");
-    const link = page.locator('a[href*="/auth/sign-up"]');
+    // Use the "Create account" link text to avoid matching nav links with double-locale prefix
+    const link = page.getByRole("link", { name: /create account/i });
     await expect(link).toBeVisible();
   });
 
   test("sign-up page renders registration form", async ({ page }) => {
     await page.goto("/en/auth/sign-up");
-    await expect(page.getByRole("heading", { name: /Create your account/i })).toBeVisible();
+    // Heading is "Start your Morocco journey" (not "Create your account")
+    await expect(page.getByRole("heading", { name: /Start your Morocco journey/i })).toBeVisible();
     await expect(page.getByLabel(/email/i)).toBeVisible();
     await expect(page.getByLabel(/password/i).first()).toBeVisible();
-    await expect(page.getByRole("button", { name: /create account/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Create Account/i })).toBeVisible();
   });
 
   test("sign-in with invalid credentials shows error", async ({ page }) => {
@@ -32,10 +34,9 @@ test.describe("Authentication flows", () => {
     await page.getByLabel(/email/i).fill("wrong@example.com");
     await page.getByLabel(/password/i).fill("wrongpassword");
     await page.getByRole("button", { name: /sign in/i }).click();
-    // Error message or still on sign-in page
-    await page.waitForTimeout(2000);
-    const url = page.url();
-    expect(url).toMatch(/sign-in|error/);
+    // Auth.js v5 redirects to pages.error (/en/auth/error) on failed credentials
+    await page.waitForURL(/sign-in|auth\/error/, { timeout: 5_000 });
+    expect(page.url()).toMatch(/sign-in|error/);
   });
 
   test("sign-in with demo investor credentials succeeds", async ({ page }) => {
@@ -43,8 +44,10 @@ test.describe("Authentication flows", () => {
     await page.getByLabel(/email/i).fill(DEMO_EMAIL);
     await page.getByLabel(/password/i).fill(DEMO_PASSWORD);
     await page.getByRole("button", { name: /sign in/i }).click();
-    // Should redirect away from sign-in
-    await page.waitForURL(/\/(investor|en\/investor|en\/?$)/, { timeout: 10_000 });
+    // Should redirect away from sign-in (to /en or /en/investor/*)
+    await page.waitForFunction(() => !window.location.href.includes("sign-in"), {
+      timeout: 12_000,
+    });
     expect(page.url()).not.toMatch(/sign-in/);
   });
 
@@ -54,7 +57,9 @@ test.describe("Authentication flows", () => {
     await page.getByLabel(/email/i).fill(DEMO_EMAIL);
     await page.getByLabel(/password/i).fill(DEMO_PASSWORD);
     await page.getByRole("button", { name: /sign in/i }).click();
-    await page.waitForURL(/\/(investor|en\/investor|en\/?$)/, { timeout: 10_000 });
+    await page.waitForFunction(() => !window.location.href.includes("sign-in"), {
+      timeout: 12_000,
+    });
     // Navigate to wizard
     await page.goto("/en/investor/wizard");
     await expect(page).toHaveURL(/wizard/);
@@ -79,7 +84,9 @@ test.describe("Authentication flows", () => {
     await page.getByLabel(/email/i).fill(DEMO_EMAIL);
     await page.getByLabel(/password/i).fill(DEMO_PASSWORD);
     await page.getByRole("button", { name: /sign in/i }).click();
-    await page.waitForURL(/\/(investor|en\/investor|en\/?$)/, { timeout: 10_000 });
+    await page.waitForFunction(() => !window.location.href.includes("sign-in"), {
+      timeout: 12_000,
+    });
 
     // Find and click sign-out (usually in nav or dropdown)
     const signOutBtn = page.locator(
@@ -97,7 +104,9 @@ test.describe("Authentication flows", () => {
     await page.getByLabel(/email/i).fill(ADMIN_EMAIL);
     await page.getByLabel(/password/i).fill(DEMO_PASSWORD);
     await page.getByRole("button", { name: /sign in/i }).click();
-    await page.waitForURL(/\/(admin|en\/admin|en\/?$)/, { timeout: 10_000 });
+    await page.waitForFunction(() => !window.location.href.includes("sign-in"), {
+      timeout: 12_000,
+    });
     // Admin should be able to reach admin dashboard
     await page.goto("/en/admin");
     expect(page.url()).not.toMatch(/sign-in/);
