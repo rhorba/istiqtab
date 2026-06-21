@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 // Mock the Anthropic SDK before importing our module
 vi.mock("@anthropic-ai/sdk", () => {
@@ -17,14 +17,14 @@ import Anthropic from "@anthropic-ai/sdk";
 
 function getMockCreate() {
   // biome-ignore lint: test helper
-  return (new (Anthropic as any)()).messages.create as ReturnType<typeof vi.fn>;
+  return new (Anthropic as any)().messages.create as ReturnType<typeof vi.fn>;
 }
 
 describe("askAdvisor", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     process.env.ANTHROPIC_API_KEY = "sk-ant-test-key";
-    delete process.env.ANTHROPIC_MODEL;
+    process.env.ANTHROPIC_MODEL = undefined;
   });
 
   it("returns text and token count from a successful API response", async () => {
@@ -129,10 +129,10 @@ describe("askAdvisor", () => {
   });
 
   it("throws if ANTHROPIC_API_KEY is not set", async () => {
-    delete process.env.ANTHROPIC_API_KEY;
+    process.env.ANTHROPIC_API_KEY = undefined;
 
-    await expect(
-      askAdvisor([{ role: "user", content: "Test" }]),
-    ).rejects.toThrow("ANTHROPIC_API_KEY is not configured");
+    await expect(askAdvisor([{ role: "user", content: "Test" }])).rejects.toThrow(
+      "ANTHROPIC_API_KEY is not configured",
+    );
   });
 });

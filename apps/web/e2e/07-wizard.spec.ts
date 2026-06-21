@@ -17,7 +17,7 @@ test.describe("Setup Wizard", () => {
     await page.waitForTimeout(1500);
     const content = await page.textContent("body");
     // Should mention steps like RC, ICE, CNSS or show a checklist
-    const hasStepContent =
+    const _hasStepContent =
       content?.includes("RC") ||
       content?.includes("ICE") ||
       content?.includes("CNSS") ||
@@ -31,7 +31,7 @@ test.describe("Setup Wizard", () => {
     await page.goto("/en/investor/wizard");
     await page.waitForTimeout(1000);
     // Progress bar or step indicators
-    const progress = page.locator(
+    const _progress = page.locator(
       '[role="progressbar"], .progress, [aria-label*="progress"], text=completed, text=steps',
     );
     // Might not be visible if no steps completed yet — just verify no error
@@ -85,7 +85,7 @@ test.describe("Setup Wizard", () => {
     await page.goto("/en/investor/wizard");
     await page.waitForTimeout(1500);
     // Look for external government links
-    const extLinks = page.locator("a[target='_blank'], a[rel*='noopener']");
+    const _extLinks = page.locator("a[target='_blank'], a[rel*='noopener']");
     // May or may not have external links depending on which step is active
     // Just verify page loads correctly
     const title = await page.title();

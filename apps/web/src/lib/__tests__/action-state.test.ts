@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { z } from "zod";
 import { zodFieldErrors } from "../action-state.js";
 
@@ -22,10 +22,7 @@ describe("zodFieldErrors", () => {
 
   it("returns the first error message per field (not all messages)", () => {
     const strictSchema = z.object({
-      password: z
-        .string()
-        .min(8, "Too short")
-        .regex(/[A-Z]/, "Needs uppercase"),
+      password: z.string().min(8, "Too short").regex(/[A-Z]/, "Needs uppercase"),
     });
     const result = strictSchema.safeParse({ password: "ab" });
     expect(result.success).toBe(false);

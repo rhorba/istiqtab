@@ -677,7 +677,7 @@ async function seed(): Promise<void> {
       .insert(partnerProfiles)
       .values(
         partnerSpecs.map((p, i) => ({
-          userId: partnerUsers[i]!.id,
+          userId: partnerUsers[i]?.id,
           companyName: p.company,
           ice: `00${1000 + i}`,
           partnerType: p.type,
@@ -756,22 +756,22 @@ async function seed(): Promise<void> {
     const verifiedPartners = partnerRows.filter((p) => p.verified);
     await tx.insert(introductionRequests).values([
       {
-        investorId: investorRows[0]!.id,
-        partnerId: verifiedPartners[0]!.id,
+        investorId: investorRows[0]?.id,
+        partnerId: verifiedPartners[0]?.id,
         message:
           "We are setting up an automotive parts plant near Tangier and need legal support for company registration (SARL) and industrial land lease.",
         status: "pending",
       },
       {
-        investorId: investorRows[1]!.id,
-        partnerId: verifiedPartners[1]!.id,
+        investorId: investorRows[1]?.id,
+        partnerId: verifiedPartners[1]?.id,
         message:
           "Looking for a recruitment partner to staff a 200-seat BPO centre in Casablanca with French/English speakers.",
         status: "accepted",
       },
       {
-        investorId: investorRows[2]!.id,
-        partnerId: verifiedPartners[2]!.id,
+        investorId: investorRows[2]?.id,
+        partnerId: verifiedPartners[2]?.id,
         message:
           "Need industrial real estate advisory for a logistics hub close to Tanger Med port.",
         status: "completed",

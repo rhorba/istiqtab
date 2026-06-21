@@ -59,7 +59,7 @@ test.describe("Partner Directory", () => {
         'button:has-text("Request"), button:has-text("Introduction"), button:has-text("Contact")',
       );
       // Button might or might not be there depending on status
-      const exists = (await requestBtn.count()) > 0;
+      const _exists = (await requestBtn.count()) > 0;
       // Just verify the page is functional
       expect(page.url()).toMatch(/\/partners\//);
     }

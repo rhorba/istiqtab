@@ -1,6 +1,6 @@
 import { Link } from "@/i18n/navigation";
-import { GUIDE_SECTORS, SECTOR_GUIDES } from "@/lib/sector-guides";
 import { routing } from "@/i18n/routing";
+import { GUIDE_SECTORS, SECTOR_GUIDES } from "@/lib/sector-guides";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -8,9 +8,7 @@ import { notFound } from "next/navigation";
 type Props = { params: Promise<{ locale: string; sector: string }> };
 
 export async function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    GUIDE_SECTORS.map((sector) => ({ locale, sector })),
-  );
+  return routing.locales.flatMap((locale) => GUIDE_SECTORS.map((sector) => ({ locale, sector })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -46,9 +44,7 @@ export default async function SectorGuidePage({ params }: Props) {
           >
             ← {t("sectorGuide.backToHub")}
           </Link>
-          <h1 className="font-serif text-4xl font-bold text-white">
-            {sectorLabel} in Morocco
-          </h1>
+          <h1 className="font-serif text-4xl font-bold text-white">{sectorLabel} in Morocco</h1>
           <p className="mt-3 text-lg text-gray-300 max-w-2xl">{guide.tagline}</p>
         </div>
       </section>
@@ -57,7 +53,10 @@ export default async function SectorGuidePage({ params }: Props) {
         {/* Stats row */}
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {guide.stats.map((s) => (
-            <div key={s.label} className="rounded-lg bg-gray-50 border border-gray-100 p-4 text-center">
+            <div
+              key={s.label}
+              className="rounded-lg bg-gray-50 border border-gray-100 p-4 text-center"
+            >
               <p className="text-2xl font-bold text-[var(--color-navy)]">{s.value}</p>
               <p className="mt-1 text-xs text-gray-500">{s.label}</p>
             </div>
@@ -112,10 +111,7 @@ export default async function SectorGuidePage({ params }: Props) {
           </h2>
           <div className="flex flex-wrap gap-2">
             {guide.keyPlayers.map((p) => (
-              <span
-                key={p}
-                className="rounded-md bg-gray-100 px-3 py-1.5 text-sm text-gray-700"
-              >
+              <span key={p} className="rounded-md bg-gray-100 px-3 py-1.5 text-sm text-gray-700">
                 {p}
               </span>
             ))}

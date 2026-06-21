@@ -19,10 +19,7 @@ export default defineConfig({
   workers: 1,
   timeout: 30_000,
 
-  reporter: [
-    ["html", { outputFolder: "playwright-report", open: "never" }],
-    ["line"],
-  ],
+  reporter: [["html", { outputFolder: "playwright-report", open: "never" }], ["line"]],
 
   use: {
     baseURL: BASE_URL,

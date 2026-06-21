@@ -53,13 +53,13 @@ describe.skipIf(!superUrl || !appUrl)("investor_documents RLS isolation", () => 
     const [doc] = await superDb
       .insert(investorDocuments)
       .values({
-        investorId: ownerProfile!.id,
+        investorId: ownerProfile?.id,
         userId: ownerId,
         type: "passport",
         fileKey: `private/${ownerId}/passport.pdf`,
       })
       .returning();
-    documentId = doc!.id;
+    documentId = doc?.id;
   });
 
   afterAll(async () => {
@@ -83,7 +83,7 @@ describe.skipIf(!superUrl || !appUrl)("investor_documents RLS isolation", () => 
       tx.select().from(investorDocuments).where(eq(investorDocuments.id, documentId)),
     );
     expect(rows).toHaveLength(1);
-    expect(rows[0]!.userId).toBe(ownerId);
+    expect(rows[0]?.userId).toBe(ownerId);
   });
 
   it("lets an admin read any investor document", async () => {

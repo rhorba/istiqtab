@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/navigation";
-import { GUIDE_SECTORS, SECTOR_GUIDES } from "@/lib/sector-guides";
+import { SECTOR_GUIDES } from "@/lib/sector-guides";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
@@ -14,7 +14,14 @@ export async function generateMetadata({
 }
 
 // Show the top 6 sectors with the most compelling stats on the landing page.
-const FEATURED_SECTORS = ["automotive", "renewables", "bpo_ites", "agrifood", "tourism", "aerospace"] as const;
+const FEATURED_SECTORS = [
+  "automotive",
+  "renewables",
+  "bpo_ites",
+  "agrifood",
+  "tourism",
+  "aerospace",
+] as const;
 
 export default async function LandingPage({
   params,

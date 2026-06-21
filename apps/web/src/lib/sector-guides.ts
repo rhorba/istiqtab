@@ -23,7 +23,8 @@ export type SectorGuide = {
 export const SECTOR_GUIDES: Record<string, SectorGuide> = {
   automotive: {
     sector: "automotive",
-    tagline: "Morocco's largest export sector — Tanger and Kenitra anchor two world-class clusters.",
+    tagline:
+      "Morocco's largest export sector — Tanger and Kenitra anchor two world-class clusters.",
     overview:
       "Morocco's automotive industry is the country's #1 export sector, generating over MAD 80 billion annually. Anchored by Renault in Tangier (400,000 units/year) and Stellantis/PSA in Kenitra (200,000 units/year), the ecosystem hosts 250+ tier-1/tier-2 suppliers. Morocco targets 1 million vehicles/year by 2030 under the Automotive Industry Strategy. The proximity to European OEMs (3 hours from Spain), competitive labour costs, and a deep free-zone infrastructure make it the leading nearshoring destination for EV and ICE manufacturing alike.",
     stats: [
@@ -33,7 +34,14 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
       { label: "Jobs in sector", value: "220,000+" },
     ],
     topRegions: ["Tanger-Tétouan-Al Hoceïma", "Rabat-Salé-Kénitra", "Casablanca-Settat"],
-    keyPlayers: ["Renault Group", "Stellantis/PSA", "Yazaki", "Sumitomo Electric", "Lear Corporation", "Delphi Technologies"],
+    keyPlayers: [
+      "Renault Group",
+      "Stellantis/PSA",
+      "Yazaki",
+      "Sumitomo Electric",
+      "Lear Corporation",
+      "Delphi Technologies",
+    ],
     incentiveHighlights: [
       "5-year IS exemption for new manufacturing companies",
       "VAT exemption on imported production equipment",
@@ -65,8 +73,21 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
       { label: "Solar irradiation", value: "2,600+ kWh/m²/year" },
       { label: "Green H₂ pipeline", value: "3–4 GW by 2030" },
     ],
-    topRegions: ["Souss-Massa", "Guelmim-Oued Noun", "Laâyoune-Sakia El Hamra", "Dakhla-Oued Ed-Dahab", "Oriental"],
-    keyPlayers: ["MASEN (state agency)", "NAREVA", "Enel Green Power", "Total Energies", "Siemens Gamesa", "Acwa Power"],
+    topRegions: [
+      "Souss-Massa",
+      "Guelmim-Oued Noun",
+      "Laâyoune-Sakia El Hamra",
+      "Dakhla-Oued Ed-Dahab",
+      "Oriental",
+    ],
+    keyPlayers: [
+      "MASEN (state agency)",
+      "NAREVA",
+      "Enel Green Power",
+      "Total Energies",
+      "Siemens Gamesa",
+      "Acwa Power",
+    ],
     incentiveHighlights: [
       "Priority grid access for renewable projects (Law 13-09)",
       "IS exemption for renewable energy producers",
@@ -99,7 +120,14 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
       { label: "French speakers", value: "13M+ literate" },
     ],
     topRegions: ["Casablanca-Settat", "Rabat-Salé-Kénitra", "Marrakech-Safi", "Fès-Meknès"],
-    keyPlayers: ["Teleperformance", "Webhelp/Concentrix", "Intelcia", "Outsourcia", "Majorel", "Capgemini"],
+    keyPlayers: [
+      "Teleperformance",
+      "Webhelp/Concentrix",
+      "Intelcia",
+      "Outsourcia",
+      "Majorel",
+      "Capgemini",
+    ],
     incentiveHighlights: [
       "IS exemption on export revenue (5-year, extendable for strategic operators)",
       "OFPPT training subsidies for new hires",
@@ -115,7 +143,10 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
     ],
     regulatoryBodies: [
       { name: "AMDIE", role: "National investment agency — offshore operators" },
-      { name: "CFC (Casablanca Finance City)", role: "Special status for eligible service companies" },
+      {
+        name: "CFC (Casablanca Finance City)",
+        role: "Special status for eligible service companies",
+      },
       { name: "CNDP", role: "Data protection authority — mandatory for EU data flows" },
       { name: "OFPPT", role: "Vocational training agency — BPO talent pipeline" },
     ],
@@ -132,7 +163,14 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
       { label: "Fisheries output", value: "1.4M tonnes/year" },
     ],
     topRegions: ["Souss-Massa", "Marrakech-Safi", "Fès-Meknès", "Dakhla-Oued Ed-Dahab"],
-    keyPlayers: ["OCP Group (phosphates)", "Cosumar (sugar)", "Lesieur Cristal (oils)", "Agrolait", "Fresh Del Monte", "Cargill"],
+    keyPlayers: [
+      "OCP Group (phosphates)",
+      "Cosumar (sugar)",
+      "Lesieur Cristal (oils)",
+      "Agrolait",
+      "Fresh Del Monte",
+      "Cargill",
+    ],
     incentiveHighlights: [
       "Tax exemptions on agricultural income (IS)",
       "VAT exemption on agricultural equipment",
@@ -165,7 +203,14 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
       { label: "Hotel capacity", value: "280,000+ beds" },
     ],
     topRegions: ["Marrakech-Safi", "Souss-Massa", "Fès-Meknès", "Drâa-Tafilalet"],
-    keyPlayers: ["Accor Hotels", "Marriott / Sheraton", "Club Med", "Thomas Cook", "Riu Hotels", "Onomo Hotels"],
+    keyPlayers: [
+      "Accor Hotels",
+      "Marriott / Sheraton",
+      "Club Med",
+      "Thomas Cook",
+      "Riu Hotels",
+      "Onomo Hotels",
+    ],
     incentiveHighlights: [
       "IS exemption for new hotel construction projects",
       "TVA exemption on construction materials for hotels",
@@ -198,7 +243,14 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
       { label: "Manufacturers", value: "50+" },
     ],
     topRegions: ["Casablanca-Settat", "Rabat-Salé-Kénitra"],
-    keyPlayers: ["Sanofi Morocco", "Pfizer Morocco", "Pharma 5", "Cooper Pharma", "Galenica", "Maphar"],
+    keyPlayers: [
+      "Sanofi Morocco",
+      "Pfizer Morocco",
+      "Pharma 5",
+      "Cooper Pharma",
+      "Galenica",
+      "Maphar",
+    ],
     incentiveHighlights: [
       "IS exemption for new pharmaceutical manufacturing investments",
       "VAT exemption on pharmaceutical production equipment",
@@ -230,7 +282,14 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
       { label: "GFCI ranking (Africa)", value: "#1" },
     ],
     topRegions: ["Casablanca-Settat"],
-    keyPlayers: ["Attijariwafa Bank", "BCP", "BMCE Bank (Bank of Africa)", "Société Générale Maroc", "CIH Bank", "BMCI (BNP Paribas)"],
+    keyPlayers: [
+      "Attijariwafa Bank",
+      "BCP",
+      "BMCE Bank (Bank of Africa)",
+      "Société Générale Maroc",
+      "CIH Bank",
+      "BMCI (BNP Paribas)",
+    ],
     incentiveHighlights: [
       "CFC status: flat 15% IS for eligible financial service companies",
       "5-year IS exemption for new CFC-registered entities",
@@ -254,7 +313,8 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
   },
   logistics: {
     sector: "logistics",
-    tagline: "Tanger Med — Africa's #1 container port. Morocco is the gateway between Europe and Africa.",
+    tagline:
+      "Tanger Med — Africa's #1 container port. Morocco is the gateway between Europe and Africa.",
     overview:
       "Morocco's logistics sector generated MAD 45 billion in 2023 and is growing at 9% annually, fuelled by the expansion of Tanger Med (Africa's #1 container port with 9M TEU/year capacity), the National Logistics Strategy 2030, and Morocco's position as a hub between Europe and sub-Saharan Africa. Key FDI opportunities include: logistics platform development, multimodal transport operators, third-party logistics (3PL) services, cold-chain infrastructure (agri-food export), and port-adjacent industrial parks. The Tanger Med Special Zone offers the most advanced logistics infrastructure in Africa.",
     stats: [
@@ -264,7 +324,14 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
       { label: "Logistics zones", value: "20+ dedicated zones" },
     ],
     topRegions: ["Tanger-Tétouan-Al Hoceïma", "Casablanca-Settat", "Oriental", "Souss-Massa"],
-    keyPlayers: ["Marsa Maroc", "APM Terminals (Tanger Med)", "BMCE Logistics", "CMA CGM", "DB Schenker", "Kuehne+Nagel"],
+    keyPlayers: [
+      "Marsa Maroc",
+      "APM Terminals (Tanger Med)",
+      "BMCE Logistics",
+      "CMA CGM",
+      "DB Schenker",
+      "Kuehne+Nagel",
+    ],
     incentiveHighlights: [
       "SEZ benefits in Tanger Med Special Zone",
       "IS and customs exemptions for logistics platform operators",
@@ -297,7 +364,14 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
       { label: "Internet penetration", value: "92%" },
     ],
     topRegions: ["Casablanca-Settat", "Rabat-Salé-Kénitra", "Fès-Meknès"],
-    keyPlayers: ["Oracle Morocco", "Microsoft Morocco", "IBM Morocco", "Capgemini Morocco", "Axway", "HPS (fintech)"],
+    keyPlayers: [
+      "Oracle Morocco",
+      "Microsoft Morocco",
+      "IBM Morocco",
+      "Capgemini Morocco",
+      "Axway",
+      "HPS (fintech)",
+    ],
     incentiveHighlights: [
       "IS exemption on export-oriented digital services",
       "CFC status for qualifying tech holding companies",
@@ -320,7 +394,8 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
   },
   aerospace: {
     sector: "aerospace",
-    tagline: "MAD 18B aerospace exports — Morocco is Europe's fastest-growing aviation nearshoring hub.",
+    tagline:
+      "MAD 18B aerospace exports — Morocco is Europe's fastest-growing aviation nearshoring hub.",
     overview:
       "Morocco's aerospace sector has grown 15x since 2001, generating MAD 18 billion in exports in 2023 and employing 20,000+ skilled workers. The ecosystem clusters around Casablanca (MRO hub), Rabat-Salé (seat manufacturing), Meknes (structural parts), and the Midparc free zone near Mohammed V International Airport. The sector is anchored by Safran (landing gear), Boeing aerostructures, Thales, Zodiac Aerospace, and EADS/Airbus subsidiaries. Morocco hosts the only aerospace MRO complex in Africa (Aéropole Nouaceur). The GIMAS aerospace cluster and Royal Air Maroc are major ecosystem anchors.",
     stats: [
@@ -330,7 +405,14 @@ export const SECTOR_GUIDES: Record<string, SectorGuide> = {
       { label: "Annual sector growth", value: "15%" },
     ],
     topRegions: ["Casablanca-Settat", "Rabat-Salé-Kénitra", "Fès-Meknès"],
-    keyPlayers: ["Safran", "Boeing", "Thales", "Zodiac Aerospace (Safran Cabin)", "EADS/Airbus Morocco", "Royal Air Maroc Engineering"],
+    keyPlayers: [
+      "Safran",
+      "Boeing",
+      "Thales",
+      "Zodiac Aerospace (Safran Cabin)",
+      "EADS/Airbus Morocco",
+      "Royal Air Maroc Engineering",
+    ],
     incentiveHighlights: [
       "5-year IS exemption for aerospace manufacturers",
       "Customs exemption on aerospace-grade imported components",

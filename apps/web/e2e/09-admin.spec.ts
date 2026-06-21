@@ -57,17 +57,16 @@ test.describe("Admin Dashboard", () => {
     await page.getByLabel(/email/i).fill("hans.schmidt@demo.istiqtab.ma");
     await page.getByLabel(/password/i).fill("demo1234");
     await page.getByRole("button", { name: /sign in/i }).click();
-    await page.waitForFunction(
-      () => !window.location.href.includes("sign-in"),
-      { timeout: 10_000 },
-    );
+    await page.waitForFunction(() => !window.location.href.includes("sign-in"), {
+      timeout: 10_000,
+    });
 
     // Now try to access admin
     await page.goto("/en/admin");
     // Should be redirected away from admin
     await page.waitForTimeout(2000);
     // Either 403/redirect/sign-in — not allowed to see admin content
-    const isAllowed = page.url().includes("/admin") && !page.url().includes("sign-in");
+    const _isAllowed = page.url().includes("/admin") && !page.url().includes("sign-in");
     // If somehow on admin, verify they can't see admin-only content
     // In practice, Next.js will redirect unauthorized users
   });

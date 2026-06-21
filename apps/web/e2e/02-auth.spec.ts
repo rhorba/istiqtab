@@ -82,7 +82,9 @@ test.describe("Authentication flows", () => {
     await page.waitForURL(/\/(investor|en\/investor|en\/?$)/, { timeout: 10_000 });
 
     // Find and click sign-out (usually in nav or dropdown)
-    const signOutBtn = page.locator('button[type="submit"]:has-text("Sign out"), form[action*="signout"] button, a:has-text("Sign out")');
+    const signOutBtn = page.locator(
+      'button[type="submit"]:has-text("Sign out"), form[action*="signout"] button, a:has-text("Sign out")',
+    );
     if ((await signOutBtn.count()) > 0) {
       await signOutBtn.first().click();
       await page.waitForURL(/\/(en\/?$|sign-in)/, { timeout: 5_000 });

@@ -29,7 +29,11 @@ vi.mock("@istiqtab/db", async () => {
 vi.mock("next/cache", () => ({ revalidatePath: vi.fn() }));
 vi.mock("next/headers", () => ({ headers: vi.fn(async () => ({ get: vi.fn(() => null) })) }));
 
-import { deleteDocument, getDocumentUrl, uploadDocument } from "../../app/[locale]/(investor)/investor/documents/actions";
+import {
+  deleteDocument,
+  getDocumentUrl,
+  uploadDocument,
+} from "../../app/[locale]/(investor)/investor/documents/actions";
 
 const BLOCKED_ROLES = ["partner", "expert"] as const;
 const ALLOWED_ROLES = ["investor", "consultant", "admin"] as const;
@@ -46,25 +50,19 @@ describe("investor document actions — role isolation", () => {
     },
   );
 
-  it.each(BLOCKED_ROLES)(
-    "getDocumentUrl: role '%s' is FORBIDDEN",
-    async (role) => {
-      authMock.mockResolvedValue({ user: { id: "u1", role, email: "x@x.co" } });
-      await expect(getDocumentUrl("00000000-0000-0000-0000-000000000000")).rejects.toThrow(
-        "FORBIDDEN",
-      );
-    },
-  );
+  it.each(BLOCKED_ROLES)("getDocumentUrl: role '%s' is FORBIDDEN", async (role) => {
+    authMock.mockResolvedValue({ user: { id: "u1", role, email: "x@x.co" } });
+    await expect(getDocumentUrl("00000000-0000-0000-0000-000000000000")).rejects.toThrow(
+      "FORBIDDEN",
+    );
+  });
 
-  it.each(BLOCKED_ROLES)(
-    "deleteDocument: role '%s' is FORBIDDEN",
-    async (role) => {
-      authMock.mockResolvedValue({ user: { id: "u1", role, email: "x@x.co" } });
-      await expect(deleteDocument("00000000-0000-0000-0000-000000000000")).rejects.toThrow(
-        "FORBIDDEN",
-      );
-    },
-  );
+  it.each(BLOCKED_ROLES)("deleteDocument: role '%s' is FORBIDDEN", async (role) => {
+    authMock.mockResolvedValue({ user: { id: "u1", role, email: "x@x.co" } });
+    await expect(deleteDocument("00000000-0000-0000-0000-000000000000")).rejects.toThrow(
+      "FORBIDDEN",
+    );
+  });
 
   it("uploadDocument: unauthenticated session is UNAUTHENTICATED", async () => {
     authMock.mockResolvedValue(null);

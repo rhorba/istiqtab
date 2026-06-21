@@ -42,7 +42,7 @@ test.describe("AI Investment Advisor", () => {
     await page.waitForTimeout(1000);
     const body = await page.textContent("body");
     // Should mention that this is not legal/financial advice
-    const hasDisclaimer =
+    const _hasDisclaimer =
       body?.toLowerCase().includes("not") ||
       body?.toLowerCase().includes("advice") ||
       body?.toLowerCase().includes("informational") ||
@@ -61,9 +61,7 @@ test.describe("AI Investment Advisor", () => {
     await expect(chatContainer.first()).toBeVisible();
   });
 
-  test("sending a question shows response area (stub with placeholder key)", async ({
-    page,
-  }) => {
+  test("sending a question shows response area (stub with placeholder key)", async ({ page }) => {
     await page.goto("/en/investor/advisor");
     await page.waitForTimeout(1000);
 

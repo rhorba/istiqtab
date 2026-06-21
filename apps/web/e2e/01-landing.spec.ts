@@ -13,9 +13,7 @@ test.describe("Landing page", () => {
   });
 
   test("shows four stat pills", async ({ page }) => {
-    const pills = page.locator(
-      "span.rounded-full.border.border-\\[var\\(--color-gold\\)\\]\\/40",
-    );
+    const pills = page.locator("span.rounded-full.border.border-\\[var\\(--color-gold\\)\\]\\/40");
     await expect(pills).toHaveCount(4);
   });
 
@@ -35,7 +33,7 @@ test.describe("Landing page", () => {
 
   test("shows 'What Istiqtab covers' trust strip with 4 items", async ({ page }) => {
     await expect(page.getByText("What Istiqtab covers")).toBeVisible();
-    const items = page.locator("text=Setup Wizard, text=Incentives Calculator");
+    const _items = page.locator("text=Setup Wizard, text=Incentives Calculator");
     await expect(page.getByText("Setup Wizard")).toBeVisible();
     await expect(page.getByText("Incentives Calculator")).toBeVisible();
     await expect(page.getByText("Partner Finder")).toBeVisible();
@@ -55,9 +53,7 @@ test.describe("Landing page", () => {
   });
 
   test("bottom section positioning statement is visible", async ({ page }) => {
-    await expect(
-      page.getByText("AMDIE tells you Morocco is open for business."),
-    ).toBeVisible();
+    await expect(page.getByText("AMDIE tells you Morocco is open for business.")).toBeVisible();
   });
 
   test("'View all sector guides' link navigates to hub", async ({ page }) => {

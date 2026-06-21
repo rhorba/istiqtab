@@ -75,18 +75,13 @@ if (videos.length === 1 || !hasFfmpeg()) {
 
 // ffmpeg concat
 const listFile = join(DOCS_DIR, "_concat_list.txt");
-writeFileSync(
-  listFile,
-  videos.map((v) => `file '${v.replace(/\\/g, "/")}'`).join("\n"),
-  "utf8",
-);
+writeFileSync(listFile, videos.map((v) => `file '${v.replace(/\\/g, "/")}'`).join("\n"), "utf8");
 
 console.log("\nRunning ffmpeg concat...");
 try {
-  execSync(
-    `ffmpeg -y -f concat -safe 0 -i "${listFile}" -c copy "${OUTPUT}"`,
-    { stdio: "inherit" },
-  );
+  execSync(`ffmpeg -y -f concat -safe 0 -i "${listFile}" -c copy "${OUTPUT}"`, {
+    stdio: "inherit",
+  });
   console.log(`\n✓ Merged ${videos.length} clips → ${OUTPUT}`);
 } catch {
   // ffmpeg failed (e.g., codec mismatch) — fall back to largest video

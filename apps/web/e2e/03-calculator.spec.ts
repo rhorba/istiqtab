@@ -18,9 +18,9 @@ test.describe("Incentives Calculator (anonymous)", () => {
 
   test("sector select is present", async ({ page }) => {
     // The form should have a sector selection
-    const sectorField = page.locator(
-      "select, button[role='combobox'], [data-testid='sector-select']",
-    ).first();
+    const sectorField = page
+      .locator("select, button[role='combobox'], [data-testid='sector-select']")
+      .first();
     await expect(sectorField).toBeVisible();
   });
 
@@ -46,9 +46,7 @@ test.describe("Incentives Calculator (anonymous)", () => {
 
   test("calculator disclaimer text is present", async ({ page }) => {
     // The disclaimer about indicative results
-    const disclaimer = page.locator(
-      "text=indicative, text=disclaimer, text=verify, text=Charter",
-    );
+    const _disclaimer = page.locator("text=indicative, text=disclaimer, text=verify, text=Charter");
     // At least one disclaimer-type text should appear
     const disclaimerCount = await page.locator("text=indicative").count();
     const charterCount = await page.locator("text=Charter").count();

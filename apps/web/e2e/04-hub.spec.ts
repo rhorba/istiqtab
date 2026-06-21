@@ -74,10 +74,9 @@ test.describe("Intelligence Hub", () => {
 
   test("hub pages have SEO meta tags", async ({ page }) => {
     await page.goto("/en/hub/sectors/automotive");
-    const description = await page.$eval(
-      'meta[name="description"]',
-      (el) => (el as HTMLMetaElement).content,
-    ).catch(() => "");
+    const _description = await page
+      .$eval('meta[name="description"]', (el) => (el as HTMLMetaElement).content)
+      .catch(() => "");
     // Either has description meta or the page title is sufficient
     const title = await page.title();
     expect(title.length).toBeGreaterThan(0);

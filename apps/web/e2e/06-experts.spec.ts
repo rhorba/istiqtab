@@ -25,7 +25,7 @@ test.describe("Expert Directory & Booking", () => {
     await page.waitForTimeout(1500);
     const body = await page.textContent("body");
     // Should mention MAD (Moroccan currency) or EUR for rates
-    const hasRate = body?.includes("MAD") || body?.includes("EUR") || body?.includes("/hr");
+    const _hasRate = body?.includes("MAD") || body?.includes("EUR") || body?.includes("/hr");
     // Either shows rates or expert names — just verify content loaded
     expect(body?.length).toBeGreaterThan(100);
   });
@@ -56,7 +56,7 @@ test.describe("Expert Directory & Booking", () => {
       const bookingEl = page.locator(
         'button:has-text("Book"), section:has-text("Book"), text=Available slots',
       );
-      const exists = (await bookingEl.count()) > 0;
+      const _exists = (await bookingEl.count()) > 0;
       // Verify page loaded without error
       const errorEl = page.locator("text=500 Internal Server Error");
       expect(await errorEl.count()).toBe(0);

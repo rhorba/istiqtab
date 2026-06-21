@@ -1,6 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import { SECTOR_GUIDES } from "@/lib/sector-guides";
-import { REGION_LABELS, SECTOR_LABELS } from "@istiqtab/core";
+import { REGION_LABELS } from "@istiqtab/core";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
@@ -118,11 +118,11 @@ export default async function HubPage({
                   <span className="font-medium text-[var(--color-navy)] group-hover:text-[var(--color-gold)] transition-colors">
                     {tRegions(region as Parameters<typeof tRegions>[0])}
                   </span>
-                  <p className="text-xs text-gray-400 mt-0.5">
-                    {REGION_LABELS[region].en}
-                  </p>
+                  <p className="text-xs text-gray-400 mt-0.5">{REGION_LABELS[region].en}</p>
                 </div>
-                <span className="text-gray-300 group-hover:text-[var(--color-gold)] transition-colors">→</span>
+                <span className="text-gray-300 group-hover:text-[var(--color-gold)] transition-colors">
+                  →
+                </span>
               </Link>
             ))}
           </div>
@@ -144,8 +144,8 @@ export default async function HubPage({
             Ready to calculate your incentives?
           </h2>
           <p className="mt-3 text-[var(--color-gold)]">
-            Use our free calculator to see exactly which Investment Charter 2022 incentives apply
-            to your sector, investment size, and chosen region.
+            Use our free calculator to see exactly which Investment Charter 2022 incentives apply to
+            your sector, investment size, and chosen region.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link

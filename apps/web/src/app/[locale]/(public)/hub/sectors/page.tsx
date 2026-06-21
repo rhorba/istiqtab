@@ -29,7 +29,10 @@ export default async function SectorsIndexPage({
     <main className="min-h-screen bg-white">
       <section className="bg-[var(--color-navy)] py-14 px-4">
         <div className="mx-auto max-w-4xl">
-          <Link href="/hub" className="mb-4 inline-block text-sm text-[var(--color-gold)] hover:underline">
+          <Link
+            href="/hub"
+            className="mb-4 inline-block text-sm text-[var(--color-gold)] hover:underline"
+          >
             ← {t("sectorGuide.backToHub")}
           </Link>
           <h1 className="font-serif text-4xl font-bold text-white">{t("sectorsTitle")}</h1>
@@ -53,7 +56,10 @@ export default async function SectorsIndexPage({
                 <p className="mt-2 text-sm text-gray-500">{guide.tagline}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {guide.stats.slice(0, 2).map((s) => (
-                    <span key={s.label} className="text-xs bg-gray-50 border border-gray-100 rounded px-2 py-1 text-gray-600">
+                    <span
+                      key={s.label}
+                      className="text-xs bg-gray-50 border border-gray-100 rounded px-2 py-1 text-gray-600"
+                    >
                       {s.label}: <strong>{s.value}</strong>
                     </span>
                   ))}

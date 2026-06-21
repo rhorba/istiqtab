@@ -57,9 +57,7 @@ export type BookingConfirmationPayload = {
   meetingUrl: string;
 };
 
-export async function sendBookingConfirmation(
-  payload: BookingConfirmationPayload,
-): Promise<void> {
+export async function sendBookingConfirmation(payload: BookingConfirmationPayload): Promise<void> {
   const { to, recipientRole, expertName, startTime, durationMinutes, meetingUrl } = payload;
   const when = new Intl.DateTimeFormat("en", {
     dateStyle: "medium",
@@ -110,7 +108,7 @@ export async function sendIntroUpdate(payload: IntroUpdatePayload): Promise<void
   const subject =
     recipientRole === "investor"
       ? `Introduction update: ${partnerName} — ${statusLabel[status]}`
-      : `New investor introduction — Istiqtab`;
+      : "New investor introduction — Istiqtab";
 
   const body =
     recipientRole === "investor"

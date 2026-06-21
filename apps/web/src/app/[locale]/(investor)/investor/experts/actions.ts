@@ -139,9 +139,9 @@ export const bookSlot = withRole(
     const investorEmail = session.user.email;
     const expertEmail = expertUser?.email;
     const slotStart = slot.startTime.toISOString();
-    const slotDuration = Math.round(
-      (slot.endTime.getTime() - slot.startTime.getTime()) / 60_000,
-    ) as 30 | 60;
+    const slotDuration = Math.round((slot.endTime.getTime() - slot.startTime.getTime()) / 60_000) as
+      | 30
+      | 60;
     const meetingLink = `https://meet.jit.si/istiqtab-${slotId}`;
     if (investorEmail) {
       sendBookingConfirmation({

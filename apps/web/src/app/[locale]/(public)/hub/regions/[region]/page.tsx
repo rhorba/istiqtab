@@ -1,7 +1,7 @@
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { db, criRegions } from "@istiqtab/db";
-import { REGION_LABELS, SECTOR_LABELS, type MoroccanRegion } from "@istiqtab/core";
+import { type MoroccanRegion, REGION_LABELS } from "@istiqtab/core";
+import { criRegions, db } from "@istiqtab/db";
 import { eq } from "drizzle-orm";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -12,9 +12,7 @@ type Props = { params: Promise<{ locale: string; region: string }> };
 const ALL_REGIONS = Object.keys(REGION_LABELS) as MoroccanRegion[];
 
 export async function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    ALL_REGIONS.map((region) => ({ locale, region })),
-  );
+  return routing.locales.flatMap((locale) => ALL_REGIONS.map((region) => ({ locale, region })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -43,12 +41,7 @@ export default async function RegionProfilePage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "Hub" });
   const tSectors = await getTranslations({ locale, namespace: "Sectors" });
 
-  const regionLabel =
-    locale === "fr"
-      ? cri.nameFr
-      : locale === "ar"
-        ? cri.nameAr
-        : cri.nameEn;
+  const regionLabel = locale === "fr" ? cri.nameFr : locale === "ar" ? cri.nameAr : cri.nameEn;
 
   return (
     <main className="min-h-screen bg-white">
@@ -62,9 +55,7 @@ export default async function RegionProfilePage({ params }: Props) {
             ← {t("regionProfile.backToHub")}
           </Link>
           <h1 className="font-serif text-4xl font-bold text-white">{regionLabel}</h1>
-          <p className="mt-2 text-[var(--color-gold)]">
-            Regional Investment Centre (CRI)
-          </p>
+          <p className="mt-2 text-[var(--color-gold)]">Regional Investment Centre (CRI)</p>
         </div>
       </section>
 
@@ -175,7 +166,8 @@ export default async function RegionProfilePage({ params }: Props) {
             Calculate incentives for {regionLabel}
           </h3>
           <p className="text-gray-300 text-sm mb-6">
-            See exactly which Investment Charter 2022 incentives apply to your project in this region.
+            See exactly which Investment Charter 2022 incentives apply to your project in this
+            region.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
