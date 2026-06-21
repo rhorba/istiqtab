@@ -96,7 +96,7 @@ describe("askAdvisor", () => {
     ];
     await askAdvisor(history);
 
-    const call = getMockCreate().mock.calls[0][0];
+    const call = getMockCreate().mock.calls[0]![0];
     expect(call.messages).toHaveLength(3);
     expect(call.messages[0]).toEqual({ role: "user", content: "First question?" });
     expect(call.messages[1]).toEqual({ role: "assistant", content: "First answer." });
@@ -113,7 +113,7 @@ describe("askAdvisor", () => {
       targetRegions: ["tanger_tetouan"],
     });
 
-    const call = getMockCreate().mock.calls[0][0];
+    const call = getMockCreate().mock.calls[0]![0];
     expect(call.system).toMatch(/automotive/i);
     expect(call.system).toMatch(/Tangier/i);
   });
