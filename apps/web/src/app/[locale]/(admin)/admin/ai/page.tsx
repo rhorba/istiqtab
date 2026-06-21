@@ -5,8 +5,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = { title: "AI Advisor Usage — Admin" };
 
 export default async function AdminAiPage() {
-  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
-  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
 
   const aiResults = await Promise.all([
     db.select({ c: count() }).from(aiChatMessages).where(eq(aiChatMessages.role, "user")),
@@ -42,7 +42,7 @@ export default async function AdminAiPage() {
     })
     .from(aiChatMessages)
     .where(
-      sql`${aiChatMessages.role} = 'user' AND ${aiChatMessages.createdAt} >= ${new Date(Date.now() - 14 * 24 * 60 * 60 * 1000)}`,
+      sql`${aiChatMessages.role} = 'user' AND ${aiChatMessages.createdAt} >= ${new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()}`,
     )
     .groupBy(sql`date_trunc('day', ${aiChatMessages.createdAt})`)
     .orderBy(sql`date_trunc('day', ${aiChatMessages.createdAt})`);

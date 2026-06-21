@@ -35,6 +35,13 @@ CREATE POLICY users_admin ON users
   FOR ALL TO istiqtab_app
   USING (current_setting('app.current_user_role', true) = 'admin');
 
+-- Allow server-side SELECT when no user context is set (e.g., credentials sign-in lookup,
+-- Auth.js adapter bootstrapping). current_setting returns '' when the var is unset.
+DROP POLICY IF EXISTS users_auth ON users;
+CREATE POLICY users_auth ON users
+  FOR SELECT TO istiqtab_app
+  USING (coalesce(current_setting('app.current_user_id', true), '') = '');
+
 -- ── RLS on sessions ───────────────────────────────────────────────────────────
 ALTER TABLE sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE sessions FORCE ROW LEVEL SECURITY;

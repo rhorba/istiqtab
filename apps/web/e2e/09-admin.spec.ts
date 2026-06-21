@@ -40,7 +40,7 @@ test.describe("Admin Dashboard", () => {
     await page.goto("/en/admin/ai");
     await expect(page).not.toHaveURL(/sign-in/);
     await page.waitForTimeout(1000);
-    await expect(page.getByText("AI Advisor Usage")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "AI Advisor Usage" })).toBeVisible();
   });
 
   test("admin wizard completions page renders", async ({ page }) => {

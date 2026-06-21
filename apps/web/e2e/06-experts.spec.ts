@@ -54,7 +54,7 @@ test.describe("Expert Directory & Booking", () => {
       await page.waitForTimeout(1500);
       // Should have a booking button or slots section
       const bookingEl = page.locator(
-        'button:has-text("Book"), section:has-text("Book"), text=Available slots',
+        'button:has-text("Book"), section:has-text("Book"), *:has-text("Available slots")',
       );
       const _exists = (await bookingEl.count()) > 0;
       // Verify page loaded without error
