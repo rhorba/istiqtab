@@ -8,7 +8,10 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "merge-videos": "node e2e/merge-videos.mjs"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.10.0",

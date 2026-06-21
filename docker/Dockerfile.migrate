@@ -9,12 +9,14 @@ RUN npm install -g pnpm@10.28.1 --quiet
 RUN apk add --no-cache postgresql16-client
 WORKDIR /app
 
-# ── Dependencies (db package only) ────────────────────────────────────────────
+# ── Dependencies ──────────────────────────────────────────────────────────────
 COPY pnpm-workspace.yaml package.json pnpm-lock.yaml .npmrc ./
 COPY packages/core/package.json packages/core/package.json
 COPY packages/db/package.json packages/db/package.json
+# Install all workspace packages so drizzle-kit ends up in the right place
+# regardless of pnpm's isolated linker strategy.
 RUN --mount=type=cache,id=pnpm-migrate,target=/pnpm/store \
-    pnpm install --frozen-lockfile --filter @istiqtab/db...
+    pnpm install --frozen-lockfile --filter @istiqtab/db --filter @istiqtab/core
 
 # ── Source ────────────────────────────────────────────────────────────────────
 COPY packages/core ./packages/core
@@ -27,7 +29,7 @@ COPY packages/db ./packages/db
 #                    the app role already has SUPERUSER — dev convenience only).
 CMD sh -c '\
   echo "[migrate] running Drizzle migrations..." && \
-  pnpm --filter @istiqtab/db db:migrate && \
+  cd /app/packages/db && npx drizzle-kit migrate && \
   echo "[migrate] applying RLS policies (init.sql)..." && \
-  psql "${SUPERUSER_URL:-$DATABASE_URL}" -v ON_ERROR_STOP=1 -f packages/db/src/init/init.sql && \
+  psql "${SUPERUSER_URL:-$DATABASE_URL}" -v ON_ERROR_STOP=1 -f /app/packages/db/src/init/init.sql && \
   echo "[migrate] done."'
