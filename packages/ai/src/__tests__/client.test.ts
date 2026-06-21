@@ -24,7 +24,8 @@ describe("askAdvisor", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     process.env.ANTHROPIC_API_KEY = "sk-ant-test-key";
-    process.env.ANTHROPIC_MODEL = undefined;
+    // biome-ignore lint/performance/noDelete: must truly unset env var (= undefined becomes the string "undefined")
+    delete process.env.ANTHROPIC_MODEL;
   });
 
   it("returns text and token count from a successful API response", async () => {
@@ -129,7 +130,8 @@ describe("askAdvisor", () => {
   });
 
   it("throws if ANTHROPIC_API_KEY is not set", async () => {
-    process.env.ANTHROPIC_API_KEY = undefined;
+    // biome-ignore lint/performance/noDelete: must truly unset env var (= undefined becomes the string "undefined")
+    delete process.env.ANTHROPIC_API_KEY;
 
     await expect(askAdvisor([{ role: "user", content: "Test" }])).rejects.toThrow(
       "ANTHROPIC_API_KEY is not configured",
