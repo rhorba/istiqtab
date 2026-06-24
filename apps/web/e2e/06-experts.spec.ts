@@ -25,9 +25,8 @@ test.describe("Expert Directory & Booking", () => {
     await page.waitForTimeout(1500);
     const body = await page.textContent("body");
     // Should mention MAD (Moroccan currency) or EUR for rates
-    const _hasRate = body?.includes("MAD") || body?.includes("EUR") || body?.includes("/hr");
-    // Either shows rates or expert names — just verify content loaded
-    expect(body?.length).toBeGreaterThan(100);
+    const hasRate = body?.includes("MAD") || body?.includes("EUR") || body?.includes("/hr");
+    expect(hasRate).toBe(true);
   });
 
   test("expert detail page renders", async ({ page }) => {

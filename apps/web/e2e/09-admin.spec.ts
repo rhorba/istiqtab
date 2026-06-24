@@ -63,12 +63,14 @@ test.describe("Admin Dashboard", () => {
 
     // Now try to access admin
     await page.goto("/en/admin");
-    // Should be redirected away from admin
+    // Should be redirected away from admin (to sign-in or 403)
     await page.waitForTimeout(2000);
-    // Either 403/redirect/sign-in — not allowed to see admin content
-    const _isAllowed = page.url().includes("/admin") && !page.url().includes("sign-in");
-    // If somehow on admin, verify they can't see admin-only content
-    // In practice, Next.js will redirect unauthorized users
+    const isBlockedFromAdmin =
+      page.url().includes("sign-in") ||
+      page.url().includes("403") ||
+      page.url().includes("unauthorized") ||
+      !(page.url().includes("/admin"));
+    expect(isBlockedFromAdmin).toBe(true);
   });
 
   test("admin dashboard shows navigation links to sub-sections", async ({ page }) => {
@@ -77,6 +79,6 @@ test.describe("Admin Dashboard", () => {
     // Admin nav should have links to bookings, introductions, AI, wizard
     const navLinks = page.locator('a[href*="/admin/"]');
     const count = await navLinks.count();
-    expect(count).toBeGreaterThanOrEqual(0); // lenient
+    expect(count).toBeGreaterThan(0);
   });
 });

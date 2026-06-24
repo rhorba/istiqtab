@@ -28,8 +28,7 @@ test.describe("Partner Directory", () => {
       "select, button[role='combobox'], input[type='radio'], [data-testid*='filter']",
     );
     const count = await filters.count();
-    // At least some filter mechanism exists
-    expect(count).toBeGreaterThanOrEqual(0); // lenient — filters might be links
+    expect(count).toBeGreaterThan(0);
   });
 
   test("partner detail page renders when clicked", async ({ page }) => {

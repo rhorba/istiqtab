@@ -20,8 +20,7 @@ test.describe("AI Investment Advisor", () => {
       'textarea, input[type="text"][placeholder*="question"], input[placeholder*="ask"]',
     );
     const count = await input.count();
-    // There should be at least one chat input
-    expect(count).toBeGreaterThanOrEqual(0); // lenient — might have different markup
+    expect(count).toBeGreaterThan(0);
   });
 
   test("send message button is present", async ({ page }) => {
@@ -33,8 +32,7 @@ test.describe("AI Investment Advisor", () => {
     // At least one send mechanism
     const hasInput = (await page.locator("textarea, input[type='text']").count()) > 0;
     const hasBtn = (await sendBtn.count()) > 0;
-    // Either input or button should exist
-    expect(hasInput || hasBtn || true).toBe(true); // page at minimum renders
+    expect(hasInput || hasBtn).toBe(true);
   });
 
   test("advisor page has safety disclaimer", async ({ page }) => {
@@ -42,13 +40,12 @@ test.describe("AI Investment Advisor", () => {
     await page.waitForTimeout(1000);
     const body = await page.textContent("body");
     // Should mention that this is not legal/financial advice
-    const _hasDisclaimer =
+    const hasDisclaimer =
       body?.toLowerCase().includes("not") ||
       body?.toLowerCase().includes("advice") ||
       body?.toLowerCase().includes("informational") ||
       body?.toLowerCase().includes("verify");
-    // Page renders correctly
-    expect(body?.length).toBeGreaterThan(50);
+    expect(hasDisclaimer).toBe(true);
   });
 
   test("advisor chat history section exists", async ({ page }) => {
